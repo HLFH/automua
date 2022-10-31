@@ -1,4 +1,4 @@
-DBURI	= sqlite:////Users/ralph/projects/automua/local/dev.sqlite
+DBURI	= sqlite:////Users/hlfh/projects/automua/local/dev.sqlite
 # Short message used when generating a new revision
 MIGMSG	= DAV server support
 # Environment variables

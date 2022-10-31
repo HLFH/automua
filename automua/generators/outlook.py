@@ -1,5 +1,7 @@
 """
-Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
+automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
+by third parties without the prior written permission of the author.
+
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
