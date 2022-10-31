@@ -1,29 +1,30 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 from flask import url_for
 from flask.views import MethodView
 from sqlalchemy.exc import OperationalError
 
-from automx2 import log
-from automx2.database import EXAMPLE_COM
-from automx2.model import Provider
-from automx2.views import EMAIL_MOZILLA
+from automua import log
+from automua.database import EXAMPLE_COM
+from automua.model import Provider
+from automua.views import EMAIL_MOZILLA
 
 
 class SiteRoot(MethodView):

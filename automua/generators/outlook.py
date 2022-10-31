@@ -1,35 +1,36 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 from xml.etree.ElementTree import Element
 from xml.etree.ElementTree import SubElement
 
-from automx2 import DomainNotFound
-from automx2 import InvalidServerType
-from automx2.generators import ConfigGenerator
-from automx2.generators import xml_to_string
-from automx2.ldap import LookupResult
-from automx2.ldap import STATUS_SUCCESS
-from automx2.model import Davserver
-from automx2.model import Domain
-from automx2.model import Server
-from automx2.util import expand_placeholders
-from automx2.util import socket_type_needs_ssl
+from automua import DomainNotFound
+from automua import InvalidServerType
+from automua.generators import ConfigGenerator
+from automua.generators import xml_to_string
+from automua.ldap import LookupResult
+from automua.ldap import STATUS_SUCCESS
+from automua.model import Davserver
+from automua.model import Domain
+from automua.model import Server
+from automua.util import expand_placeholders
+from automua.util import socket_type_needs_ssl
 
 NS_REQUEST = 'http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006'
 NS_RESPONSE_PAYLOAD = 'http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a'

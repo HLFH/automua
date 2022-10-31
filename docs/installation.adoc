@@ -1,9 +1,23 @@
 // vim:ts=4:sw=4:et:ft=asciidoc
 
 [[install]]
-== Installing automx2
+== Installing automua
 
-automx2 requires Python version 3.7 or greater, ideally in the form of a virtual Python environment, to run.
+[[archlinux]]
+=== Installing via Arch Linux AUR
+
+automua has been released link:https://aur.archlinux.org/packages/automua[on Arch Linux AUR] to simplify the installation and the setup. You would require the Arch Linux distribution for that end.
+The AUR helper link:https://github.com/Jguer/yay[yay] is recommended.
+
+[source,bash]
+----
+yay -S automua
+----
+
+[[manual]]
+=== Installing from command line
+
+automua requires Python version 3.7 or greater, ideally in the form of a virtual Python environment, to run.
 Check the python3 version like this:
 
 [source,bash]
@@ -17,30 +31,30 @@ Python 3.9.11
 ====
 If you use a port number greater than 1024 (I suggest port 4243), the application does not require super user privileges when running.
 Doing so would pose a security risk and is therefore strongly discouraged.
-I recommend creating a fresh user account called `automx2`.
+I recommend creating a fresh user account called `automua`.
 ====
 
-Prepare the virtual environment for the automx2 web service, adjusting the installation path to your taste (automx2 itself does not care).
-The path `/srv/web/automx2` will be used as an example throughout this documentation.
+Prepare the virtual environment for the automua web service, adjusting the installation path to your taste (automua itself does not care).
+The path `/srv/http/automua` will be used as an example throughout this documentation.
 The BASH shell commands below should work with any modern Linux distribution.
 
 [source,bash]
 ----
 # Best practice: Create a fresh user account.
-sudo useradd --home-dir /srv/web/automx2 --create-home automx2
+sudo useradd --home-dir /srv/http/automua --create-home automua
 
 # Alternative: If the user account already exists.
-# sudo bash -c 'mkdir -p /srv/web/automx2 && chown automx2 /srv/web/automx2'
+# sudo bash -c 'mkdir -p /srv/http/automua && chown automua /srv/http/automua'
 ----
 
 Next, make sure to either login as the user created above, or change to this user via the 'su' command.
 This is important to ensure the correct file permissions.
-Download the script that will download and setup your automx2 service:
+Download the script that will download and setup your automua service:
 
 [source,bash]
 ----
-cd /srv/web/automx2
-wget https://github.com/rseichter/automx2/raw/master/contrib/setupvenv.sh
+cd /srv/http/automua
+wget https://github.com/HLFH/automua/raw/master/contrib/setupvenv.sh
 chmod u+x setupvenv.sh
 ----
 
@@ -51,26 +65,26 @@ Executing the setup script will create a Python virtual environment called `.ven
 ./setupvenv.sh
 ----
 
-Activate the virtual environment and install the latest automx2 release from PyPI.
+Activate the virtual environment and install the latest automua release from PyPI.
 Make sure to pick the correct activation for your shell from the `.venv/bin` directory.
 This is an example for BASH:
 
 [source,bash]
 ----
 source .venv/bin/activate
-pip install automx2
+pip install automua
 ----
 
 [NOTE]
-.Updating to a newer automx2 release
+.Updating to a newer automua release
 ====
-Change to the directory where automx2 has been installed previously.
+Change to the directory where automua has been installed previously.
 Activate the virtual environment as usual and use pip's `--upgrade` option:
 
 [source,bash]
 ----
-cd /srv/web/automx2
+cd /srv/http/automua
 source .venv/bin/activate
-pip install --upgrade automx2
+pip install --upgrade automua
 ----
 ====

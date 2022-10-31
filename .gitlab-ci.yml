@@ -12,11 +12,11 @@ test:
     - source venv/bin/activate
     - pip install -U pip
     - pip install -r requirements.txt -r requirements-ci.txt
-    - flake8 --select=E9,F63,F7,F82 --show-source automx2
-    - flake8 --exit-zero --max-complexity=10 automx2
-    - export AUTOMX2_CONF='tests/unittest.conf'
+    - flake8 --select=E9,F63,F7,F82 --show-source automua
+    - flake8 --exit-zero --max-complexity=10 automua
+    - export AUTOMUA_CONF='tests/unittest.conf'
     - export PYTHONPATH=.
     - export RUN_LDAP_TESTS=0
-    - coverage run --rcfile=tests/coverage.rc --source=automx2 --module unittest discover -v tests/
+    - coverage run --rcfile=tests/coverage.rc --source=automua --module unittest discover -v tests/
     - coverage report --rcfile=tests/coverage.rc --precision=1 --skip-empty
   when: manual

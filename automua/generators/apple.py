@@ -1,41 +1,42 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 from typing import List
 from xml.etree.ElementTree import Element
 from xml.etree.ElementTree import SubElement
 
-from automx2 import DomainNotFound
-from automx2 import InvalidAuthenticationType
-from automx2 import NoProviderForDomain
-from automx2 import NoServersForDomain
-from automx2.generators import ConfigGenerator
-from automx2.generators import branded_id
-from automx2.generators import xml_to_string
-from automx2.ldap import LookupResult
-from automx2.ldap import STATUS_SUCCESS
-from automx2.model import Domain
-from automx2.model import Provider
-from automx2.model import Server
-from automx2.util import expand_placeholders
-from automx2.util import socket_type_needs_ssl
-from automx2.util import strip_none_values
-from automx2.util import unique
+from automua import DomainNotFound
+from automua import InvalidAuthenticationType
+from automua import NoProviderForDomain
+from automua import NoServersForDomain
+from automua.generators import ConfigGenerator
+from automua.generators import branded_id
+from automua.generators import xml_to_string
+from automua.ldap import LookupResult
+from automua.ldap import STATUS_SUCCESS
+from automua.model import Domain
+from automua.model import Provider
+from automua.model import Server
+from automua.util import expand_placeholders
+from automua.util import socket_type_needs_ssl
+from automua.util import strip_none_values
+from automua.util import unique
 
 AUTH_MAP = {
     'none': 'EmailAuthNone',

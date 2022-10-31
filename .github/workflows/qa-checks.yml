@@ -29,6 +29,6 @@ jobs:
         run: |
           python -m unittest discover -v tests/
         env:
-          AUTOMX2_CONF: 'tests/unittest.conf'
+          AUTOMUA_CONF: 'tests/unittest.conf'
           # Skip LDAP-based tests for GitHub CI
           RUN_LDAP_TESTS: 0

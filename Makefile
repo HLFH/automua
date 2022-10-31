@@ -11,7 +11,7 @@ clean:
 	$(PKG) clean || true
 
 devtest:
-	AUTOMX2_CONF=tests/unittest.conf RUN_LDAP_TESTS=$(RUN_LDAP_TESTS) PYTHONPATH=. coverage run --source automx2 -m unittest discover -v tests/
+	AUTOMUA_CONF=tests/unittest.conf RUN_LDAP_TESTS=$(RUN_LDAP_TESTS) PYTHONPATH=. coverage run --source automua -m unittest discover -v tests/
 	coverage html --rcfile=tests/coverage.rc
 
 dist:

@@ -1,70 +1,70 @@
 // vim:ts=4:sw=4:et:ft=asciidoc
 
 [[configure]]
-== Configuring automx2
+== Configuring automua
 
-automx2 uses a file to read runtime instructions from and a database to lookup mail account configuration data.
+automua uses a file to read runtime instructions from and a database to lookup mail account configuration data.
 
 [[placeholders]]
 === Placeholders
 
-To make configuration more convenient, automx2 supports https://wiki.mozilla.org/Thunderbird:Autoconfiguration:ConfigFileFormat#Placeholders[Mozilla-style placeholders,window=_blank].
+To make configuration more convenient, automua supports https://wiki.mozilla.org/Thunderbird:Autoconfiguration:ConfigFileFormat#Placeholders[Mozilla-style placeholders,window=_blank].
 For example, the string `%EMAILADDRESS%` in database records will be replaced with the email address specified during the query.
-While based on a proprietary feature of Autoconfig, automx2 also applies placeholders to Autodiscover and Mobileconfig responses.
+While based on a proprietary feature of Autoconfig, automua also applies placeholders to Autodiscover and Mobileconfig responses.
 
 === Runtime configuration
 
-The configuration file defines automx2 runtime behaviour and it specifies the backend automx2 should read mailbox account configuration data from.
+The configuration file defines automua runtime behaviour and it specifies the backend automua should read mailbox account configuration data from.
 
 [NOTE]
 .Running without runtime config
 ====
-If you launch automx2 without a configuration file, it will use internal defaults.
+If you launch automua without a configuration file, it will use internal defaults.
 These are suitable for testing only.
 Launched without a config it will use an in-memory SQLite database and all data will be lost once the application terminates.
 ====
 
-During startup automx2 searches for runtime configuration instructions in the following locations.
+During startup automua searches for runtime configuration instructions in the following locations.
 The first match will determine the configuration used.
 
 [source,txt]
 ----
-env  : AUTOMX2_CONF  <1>
-file : ~/.automx2.conf
-file : /etc/automx2/automx2.conf
-file : /etc/automx2.conf
+env  : AUTOMUA_CONF  <1>
+file : ~/.automua.conf
+file : /etc/automua/automua.conf
+file : /etc/automua.conf
 ----
 
-<1> If present, the environment variable AUTOMX2_CONF must point to the absolute path of a configuration file.
+<1> If present, the environment variable AUTOMUA_CONF must point to the absolute path of a configuration file.
 
-To specify parameters and options automx2 uses an
+To specify parameters and options automua uses an
 link:https://docs.python.org/3.9/library/configparser.html#supported-ini-file-structure[INI
 file] syntax.
 The
-link:https://github.com/rseichter/automx2/blob/master/contrib/automx2-sample.conf[example
-configuration] that ships with automx2 looks like this:
+link:https://github.com/HLFH/automua/blob/master/contrib/automua-sample.conf[example
+configuration] that ships with automua looks like this:
 
 [source,ini]
 ----
-include::../contrib/automx2-sample.conf[]
+include::../contrib/automua-sample.conf[]
 ----
 
-Place the content of the example configuration into one of the configuration locations automx2 looks for and adapt it to your needs.
+Place the content of the example configuration into one of the configuration locations automua looks for and adapt it to your needs.
 Then configure the database backend with data that suits your setup, as described below.
 
-=== Testing standalone automx2
+=== Testing standalone automua
 
-If you want to verify a vanilla installation of automx2 works, you can populate it with internal test data.
-Start automx2 as described in section <<run>> and send the following request to populate your database:
+If you want to verify a vanilla installation of automua works, you can populate it with internal test data.
+Start automua as described in section <<run>> and send the following request to populate your database:
 
 [source,bash]
 ----
 curl http://127.0.0.1:4243/initdb/
 ----
 
-This example assumes you are running automx2 on localhost listening on TCP port 4243, which is the suggested default port.
+This example assumes you are running automua on localhost listening on TCP port 4243, which is the suggested default port.
 
-Once you have populated the database with sample data you can test if automx2 works.
+Once you have populated the database with sample data you can test if automua works.
 Use curl to send an account configuration request for +user@example.com+:
 
 [source,bash]

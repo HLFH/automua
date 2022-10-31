@@ -3,7 +3,7 @@
 [[dbconf]]
 === Database configuration
 
-automx2 uses the SQLAlchemy toolkit to access databases.
+automua uses the SQLAlchemy toolkit to access databases.
 This allows a variety of databases, a.k.a. link:https://docs.sqlalchemy.org/en/latest/dialects/[dialects], to be used, simply by defining the appropriate connection URL.
 
 [NOTE]
@@ -33,24 +33,24 @@ Sending a HTTP DELETE request to `/initdb/` will purge all existing data.
 Be sure to limit access accordingly!
 ====
 
-If you upgrade from an early automx2 release and wish to migrate your existing database, you can use the built-in Alembic support.
+If you upgrade from an early automua release and wish to migrate your existing database, you can use the built-in Alembic support.
 However, this requires cloning the Git repository, modifying `alembic.ini` and invoking the migration from the command line.
 It is usually easier to export your existing data, create a fresh DB and import the data.
 
 ==== SQLite
 
-This section demonstrates what you need to do to in order to use SQLite version 3 or higher as a backend database for automx2.
+This section demonstrates what you need to do to in order to use SQLite version 3 or higher as a backend database for automua.
 
-Step 1: Set the database URI in your automx2 configuration.
+Step 1: Set the database URI in your automua configuration.
 Please note that specifying an absolute path for the database requires a total of four slashes after the schema identifier:
 
 [source,ini]
 ----
-[automx2]
-db_uri = sqlite:////var/lib/automx2/db.sqlite
+[automua]
+db_uri = sqlite:////var/lib/automua/db.sqlite
 ----
 
-Step 2: Launch automx2 and access the DB initialisation URL.
+Step 2: Launch automua and access the DB initialisation URL.
 
 [source,bash]
 ----
@@ -60,7 +60,7 @@ curl -X GET http://127.0.0.1:4243/initdb/
 curl -X POST --json @mydata.json http://127.0.0.1:4243/initdb/
 ----
 
-Starting with automx2 version 2022.0, JSON data can be used to populate the database in a simplified manner, without the need to use SQL statements.
+Starting with automua version 2022.0, JSON data can be used to populate the database in a simplified manner, without the need to use SQL statements.
 The required data format is as follows:
 
 [source,json]
@@ -68,7 +68,7 @@ The required data format is as follows:
 include::../contrib/seed-example.json[]
 ----
 
-Using JSON is recommended when you are content with automx2 choosing some details like port numbers or socket types for you.
+Using JSON is recommended when you are content with automua choosing some details like port numbers or socket types for you.
 
 If you prefer SQL statements for greater control of the database content, the Git repository contains a xref:../contrib/sqlite-generate.sh[sqlite-generate.sh] helper script which demonstrates how the database can be populated programmatically.
 You only need to adapt a few settings according to your needs:
@@ -79,14 +79,14 @@ include::../contrib/sqlite-generate.sh[lines=10..15]
 ----
 
 The script will print the SQL statements to standard output, which can be piped into `sqlite3` for processing.
-Make sure to match the automx2.conf `db_uri` setting when specifying the database.
+Make sure to match the automua.conf `db_uri` setting when specifying the database.
 
 [source,bash]
 ----
-contrib/sqlite-generate.sh | sqlite3 /var/lib/automx2/db.sqlite
+contrib/sqlite-generate.sh | sqlite3 /var/lib/automua/db.sqlite
 ----
 
-Once you have populated the database automx2 is ready to run.
+Once you have populated the database automua is ready to run.
 
 ==== MySQL
 
@@ -94,19 +94,19 @@ Step 1: Create a database.
 
 [source,mysql]
 ----
-CREATE DATABASE `automx2` COLLATE 'utf8mb4_general_ci';
+CREATE DATABASE `automua` COLLATE 'utf8mb4_general_ci';
 ----
 
-Step 2: Set the database URI in your automx2 configuration.
-The following example uses _pymysql_ as a DB driver, which is not included in the automx2 distribution.
+Step 2: Set the database URI in your automua configuration.
+The following example uses _pymysql_ as a DB driver, which is not included in the automua distribution.
 
 [source,ini]
 ----
-[automx2]
-db_uri = mysql+pymysql://user:pass@dbhost/automx2?charset=utf8mb4
+[automua]
+db_uri = mysql+pymysql://user:pass@dbhost/automua?charset=utf8mb4
 ----
 
-Step 3: Launch automx2 and access the DB initialisation URL:
+Step 3: Launch automua and access the DB initialisation URL:
 
 [source,bash]
 ----
@@ -119,19 +119,19 @@ Step 1: Create a database.
 
 [source,postgresql]
 ----
-CREATE DATABASE automx2 LOCALE 'en_US.utf8';
+CREATE DATABASE automua LOCALE 'en_US.utf8';
 ----
 
-Step 2: Set the database URI in your automx2 configuration.
-The following example uses _psycopg2_ as a DB driver, which is not included in the automx2 distribution.
+Step 2: Set the database URI in your automua configuration.
+The following example uses _psycopg2_ as a DB driver, which is not included in the automua distribution.
 
 [source,ini]
 ----
-[automx2]
-db_uri = postgresql+psycopg2://user:pass@dbhost/automx2
+[automua]
+db_uri = postgresql+psycopg2://user:pass@dbhost/automua
 ----
 
-Step 3: Launch automx2 and access the DB initialisation URL:
+Step 3: Launch automua and access the DB initialisation URL:
 
 [source,bash]
 ----

@@ -8,7 +8,7 @@ They will either send the user's mail address to a service and ask the service t
 
 Using a specialized mail account configuration service allows for individualized setups.
 It also allows to enforce a specific policy, which for example configures the mail client to use a specific authentication mechanism.
-Quering the DNS for mail service locations allows for generic instructions, but it doesn't give as much control over settings as a specialized service like automx2 will do.
+Quering the DNS for mail service locations allows for generic instructions, but it doesn't give as much control over settings as a specialized service like automua will do.
 
 As of today, there are four methods that help configuring a mail account.
 Three of them – <<autoconfig>>, <<autodiscover>> and <<mobileconfig>>
@@ -20,9 +20,9 @@ The vendor specific methods have in common that the mail client seeking configur
 The service will use the mail address to lookup configuration data and will return that data as response to the client.
 Format – XML response or file – and complexity differ depending on the method.
 
-automx2 implements everything necessary to configure email accounts.
+automua implements everything necessary to configure email accounts.
 Functionality to configure calendar or address book settings is not included.
-This may change in some future version, but the focus of automx2 is email.
+This may change in some future version, but the focus of automua is email.
 
 [[autoconfig]]
 === Autoconfig
@@ -45,7 +45,7 @@ http://autoconfig.example.com/mail/config-v1.1.xml?emailaddress=alice@example.co
 http://example.com/.well-known/autoconfig/mail/config-v1.1.xml
 ----
 
-A configuration service such as automx2 listening on one of the listed URIs will receive the request, process it and respond with a set of configuration instructions.
+A configuration service such as automua listening on one of the listed URIs will receive the request, process it and respond with a set of configuration instructions.
 
 Thunderbird will use the instructions to automatically fill in the required fields in the account.
 The only remaining task for the user is to confirm the settings.
@@ -55,9 +55,9 @@ After that she can immediately start to use her new mail account.
 === Autodiscover
 
 Autodiscover is a proprietary method developed by Microsoft.
-The protocol version supported by automx2 was designed to configure a mail account within Outlook 2016 ff.
+The protocol version supported by automua was designed to configure a mail account within Outlook 2016.
 Service lookups use the URLs shown below and, as a fallback option, DNS lookups.
-Please note that Microsft uses a different autodiscover mechanism for Office 365, which is not yet supported by automx2 because information about the technical details are not available free of charge.
+Please note that Microsft uses a different autodiscover mechanism for Office 365, which is not yet supported by automua because information about the technical details are not available free of charge.
 
 [source,text]
 [.small]
@@ -87,7 +87,7 @@ The `SRV` RR used in the example above would send Alice's client to
 === Mobileconfig
 
 Requests and responses use proprietary content types with an underlying link:https://en.wikipedia.org/wiki/Property_list[property list] format.
-automx2 will return _unsigned_ data, which means that the service must be accessed via HTTPS only.
+automua will return _unsigned_ data, which means that the service must be accessed via HTTPS only.
 Otherwise, your users have no way of knowing if they access the correct service and will be vulnerable to man-in-the-middle attacks.
 
 [[dnsrr]]

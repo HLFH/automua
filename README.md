@@ -1,33 +1,30 @@
-# automx2: Email client configuration made easy
+# automua: Email client configuration made easy
 
-automx2 makes configuring email accounts easy. It unites methods for automated mailbox configuration from Apple's
-[Mobileconfig](https://support.apple.com/de-de/guide/profile-manager/pmdbd71ebc9/mac), Microsoft's
-[Autodiscover](https://docs.microsoft.com/de-de/exchange/architecture/client-access/autodiscover?view=exchserver-2019)
-and Mozilla's [Autoconfig](https://developer.mozilla.org/de/docs/Mozilla/Thunderbird/Autokonfiguration) in one tool.
-automx2 is successor to automx. It has been designed to be easier to setup, easier to configure and easier to use.
+automua makes configuring email accounts easy. It unites methods for automated mailbox configuration from Apple's
+[Mobileconfig](https://support.apple.com/en-gb/guide/profile-manager/pmdbd71ebc9/mac), Microsoft's
+[Autodiscover](https://docs.microsoft.com/en-gb/exchange/architecture/client-access/autodiscover?view=exchserver-2019)
+and Mozilla's [Autoconfig](https://hlfh.github.io/autoconfiguration/) in one tool.
+automua is a fork of automx2. It accepts code contributions.
 
 ## Copyright
+automua is a fork of automx2.
+Check per-file copyright notices to see the sole modifications and the new files of the fork automua that are Copyright © 2022 Gaspard d'Hautefeuille.
+automx2 and most of the files of the fork are Copyright © 2019-2022 Ralph Seichter.
 
-automx2 is Copyright © 2019-2022 Ralph Seichter.
-automx2 is licensed under the GNU General Public License V3 or later. The project is hosted on GitHub in the
-[rseichter/automx2](https://github.com/rseichter/automx2) repository and published on
-[PyPI.org](https://pypi.org/project/automx2/).
+automua is licensed under the GNU General Public License V3 or later. The project is hosted on GitHub in the [HLFH/automua](https://github.com/HLFH/automua) repository. It is published on [PyPI.org](https://pypi.org/project/automua/) and [Arch Linux AUR](https://aur.archlinux.org/packages/automua).
 
 ## Documentation
 
-Detailed documentation is available in [HTML](https://rseichter.github.io/automx2/),
-[PDF](https://github.com/rseichter/automx2/blob/master/docs/automx2.pdf) and
-[other formats](https://github.com/rseichter/automx2/blob/master/docs).
+Detailed documentation is available in [HTML](https://hlfh.github.io/automua/),
+[PDF](https://github.com/hlfh/automua/blob/master/docs/automua.pdf) and
+[other formats](https://github.com/hlfh/automua/blob/master/docs).
 
 ## Contributing
 
-To avoid copyright issues, I do not currently accept code contributions. I hope that this will change at some point
-in the future, but for now, please refrain from opening merge requests.
+This project accepts code contributions.
 
-However, submitting ideas, suggestions and bug reports in the form of
-[GitHub issues](https://github.com/rseichter/automx2/issues) is welcome. Please refer to
-[this blog article](https://about.gitlab.com/blog/2016/03/03/start-with-an-issue/) for an explanation on why issues
-are a good method to share and discuss ideas.
+Furthermore, submitting ideas, suggestions, requests and bug reports in the form of
+[GitHub issues](https://github.com/hlfh/automua/issues) is welcome.
 
 ## Sponsorship
 

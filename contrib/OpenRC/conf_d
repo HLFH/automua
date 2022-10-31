@@ -1,10 +1,10 @@
-# /etc/conf.d/automx2
+# /etc/conf.d/automua
 
 # Additional parameters passed to Flask
-#AUTOMX2_ARGS="--host 127.0.0.1 --port 4243"
+#AUTOMUA_ARGS="--host 127.0.0.1 --port 4243"
 
 # Configuration file
-#AUTOMX2_CONF="/etc/automx2.conf"
+#AUTOMUA_CONF="/etc/automua.conf"
 
 # Process owner (choose a non-privileged user)
-#AUTOMX2_USER="automx2"
+#AUTOMUA_USER="automua"

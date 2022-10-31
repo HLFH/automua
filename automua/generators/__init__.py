@@ -1,34 +1,35 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 from typing import List
 from xml.etree.ElementTree import Element
 from xml.etree.ElementTree import tostring
 
-from automx2 import IDENTIFIER
-from automx2 import LdapLookupError
-from automx2 import LdapNoMatch
-from automx2.ldap import LdapAccess
-from automx2.ldap import LookupResult
-from automx2.ldap import STATUS_ERROR
-from automx2.ldap import STATUS_NO_MATCH
-from automx2.model import Ldapserver
-from automx2.model import Server
+from automua import IDENTIFIER
+from automua import LdapLookupError
+from automua import LdapNoMatch
+from automua.ldap import LdapAccess
+from automua.ldap import LookupResult
+from automua.ldap import STATUS_ERROR
+from automua.ldap import STATUS_NO_MATCH
+from automua.model import Ldapserver
+from automua.model import Server
 
 
 def branded_id(id_) -> str:

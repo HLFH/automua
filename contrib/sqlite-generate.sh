@@ -44,7 +44,7 @@ if [[ -n "${LDAP_SERVER}" ]]; then
 -- Settings tested with OpenLDAP
 DELETE FROM ldapserver;
 INSERT INTO ldapserver(id, name, port, use_ssl, search_base, search_filter, attr_uid, attr_cn, bind_password, bind_user)
-  VALUES(${ldap_id}, '${LDAP_SERVER}', 636, 1, '${root}', '(mail={0})', 'uid', 'cn', 'SECRET', 'cn=automx2,${root}');
+  VALUES(${ldap_id}, '${LDAP_SERVER}', 636, 1, '${root}', '(mail={0})', 'uid', 'cn', 'SECRET', 'cn=automua,${root}');
 
 EOT
 else

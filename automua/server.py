@@ -1,32 +1,33 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 from flask import Flask
 from flask_migrate import Migrate
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-from automx2.config import config
-from automx2.model import db
-from automx2.views import autoconfig
-from automx2.views import autodiscover
-from automx2.views import mobileconfig
-from automx2.views.initdb import InitDatabase
-from automx2.views.site import SiteRoot
+from automua.config import config
+from automua.model import db
+from automua.views import autoconfig
+from automua.views import autodiscover
+from automua.views import mobileconfig
+from automua.views.initdb import InitDatabase
+from automua.views.site import SiteRoot
 
 APPLE_CONFIG_ROUTE = '/mobileconfig/'
 INITDB_ROUTE = '/initdb/'
@@ -36,7 +37,7 @@ MSOFT_CONFIG_ROUTE = '/autodiscover/autodiscover.xml'
 
 
 def _proxy_fix():
-    """Use a fix for Werkzeug if automx2 is running behind a proxy.
+    """Use a fix for Werkzeug if automua is running behind a proxy.
     This enables support for X-Forwarded-* headers.
     """
     p = int(config.proxy_count())

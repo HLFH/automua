@@ -1,32 +1,33 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 import logging
 
-IDENTIFIER = 'automx2'  # Do not change this!
-VERSION = '2022.1'
+IDENTIFIER = "automua" # Do not change this!
+VERSION = '2022.5'
 
 PLACEHOLDER_ADDRESS = r'%EMAILADDRESS%'
 PLACEHOLDER_DOMAIN = r'%EMAILDOMAIN%'
 PLACEHOLDER_LOCALPART = r'%EMAILLOCALPART%'
 
 
-class AutomxException(Exception):
+class AutoMuaException(Exception):
     """Exception base class for this application.
 
     Will result in HTTP code 400 (bad request).
@@ -34,7 +35,7 @@ class AutomxException(Exception):
     pass
 
 
-class NotFoundException(AutomxException):
+class NotFoundException(AutoMuaException):
     """Exception base class for lookup failures etc.
 
     Will result in HTTP code 204 (no content).
@@ -42,7 +43,7 @@ class NotFoundException(AutomxException):
     pass
 
 
-class InvalidEMailAddressError(AutomxException):
+class InvalidEMailAddressError(AutoMuaException):
     """Email address is invalid/unparseable."""
     pass
 
@@ -52,27 +53,27 @@ class DomainNotFound(NotFoundException):
     pass
 
 
-class NoProviderForDomain(AutomxException):
+class NoProviderForDomain(AutoMuaException):
     """Database did not contain a provider for the given address."""
     pass
 
 
-class NoServersForDomain(AutomxException):
+class NoServersForDomain(AutoMuaException):
     """Database did not contain any servers for the given address."""
     pass
 
 
-class InvalidServerType(AutomxException):
+class InvalidServerType(AutoMuaException):
     """Database contains an invalid server type."""
     pass
 
 
-class InvalidAuthenticationType(AutomxException):
+class InvalidAuthenticationType(AutoMuaException):
     """Database contains an invalid authentication type."""
     pass
 
 
-class LdapLookupError(AutomxException):
+class LdapLookupError(AutoMuaException):
     """LDAP lookup failed."""
     pass
 

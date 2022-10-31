@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # vim:tabstop=4:noexpandtab
 #
-# Runs unittests for automx2. Example usage:
+# Runs unittests for automua. Example usage:
 #
 # (1) unittest.sh
 # Run all unittests without collecting coverage data.
@@ -17,9 +17,9 @@ if [ -f local/secrets ]; then
 	source local/secrets
 fi
 
-export AUTOMX2_CONF='tests/unittest.conf'
-if [ ! -f ${AUTOMX2_CONF} ]; then
-	echo "Missing config file ${AUTOMX2_CONF}" >&2
+export AUTOMUA_CONF='tests/unittest.conf'
+if [ ! -f ${AUTOMUA_CONF} ]; then
+	echo "Missing config file ${AUTOMUA_CONF}" >&2
 	exit 1
 fi
 
@@ -37,7 +37,7 @@ function run_tests() {
 function run_coverage() {
 	local rcf="--rcfile=tests/coverage.rc"
 	local opt="${rcf} --precision=1 --skip-empty"
-	run_tests "coverage run ${rcf} --source=automx2"
+	run_tests "coverage run ${rcf} --source=automua"
 	coverage report ${opt}
 	coverage html ${opt}
 }

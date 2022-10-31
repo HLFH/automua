@@ -1,8 +1,8 @@
-DBURI	= sqlite:////Users/ralph/projects/automx2/local/dev.sqlite
+DBURI	= sqlite:////Users/ralph/projects/automua/local/dev.sqlite
 # Short message used when generating a new revision
 MIGMSG	= DAV server support
 # Environment variables
-FLASKDB = PYTHONPATH=.. FLASK_APP=automx2.server:app flask db
+FLASKDB = PYTHONPATH=.. FLASK_APP=automua.server:app flask db
 # Shared Alembic options
 ALOPTS	= -d .
 

@@ -1,5 +1,5 @@
 """
-DB schema for automx2 version 2020.0
+DB schema for automua version 2020.0
 Created: 2020-01-17 22:30:05.748651
 """
 from alembic import op

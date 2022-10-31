@@ -1,43 +1,44 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 import unittest
 
 from flask import Response
 
-from automx2.generators.outlook import NS_REQUEST
-from automx2.generators.outlook import NS_RESPONSE_PAYLOAD
-from automx2.database import LDAP_BIND_PASSWORD
-from automx2.database import LDAP_BIND_USER
-from automx2.database import LDAP_HOSTNAME
-from automx2.database import LDAP_PORT
-from automx2.database import LDAP_SEARCH_BASE
-from automx2.database import populate_db
-from automx2.model import Ldapserver
-from automx2.model import db
-from automx2.server import APPLE_CONFIG_ROUTE
-from automx2.server import MOZILLA_CONFIG_ROUTE
-from automx2.server import MSOFT_CONFIG_ROUTE
-from automx2.server import app
-from automx2.util import from_environ
-from automx2.views import CONTENT_TYPE_XML
-from automx2.views import EMAIL_MOZILLA
-from automx2.views import EMAIL_OUTLOOK
+from automua.generators.outlook import NS_REQUEST
+from automua.generators.outlook import NS_RESPONSE_PAYLOAD
+from automua.database import LDAP_BIND_PASSWORD
+from automua.database import LDAP_BIND_USER
+from automua.database import LDAP_HOSTNAME
+from automua.database import LDAP_PORT
+from automua.database import LDAP_SEARCH_BASE
+from automua.database import populate_db
+from automua.model import Ldapserver
+from automua.model import db
+from automua.server import APPLE_CONFIG_ROUTE
+from automua.server import MOZILLA_CONFIG_ROUTE
+from automua.server import MSOFT_CONFIG_ROUTE
+from automua.server import app
+from automua.util import from_environ
+from automua.views import CONTENT_TYPE_XML
+from automua.views import EMAIL_MOZILLA
+from automua.views import EMAIL_OUTLOOK
 
 RUN_LDAP_TESTS = from_environ('RUN_LDAP_TESTS') == '1'
 

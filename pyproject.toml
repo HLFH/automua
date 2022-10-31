@@ -1,0 +1,56 @@
+# Copyright © 2022 Gaspard d'Hautefeuille
+# This file is part of automua.
+
+# automua is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# automua is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+#along with automua. If not, see <https://www.gnu.org/licenses/>.
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "automua"
+dynamic = ["version"]
+authors = [
+  { name="Gaspard d'Hautefeuille", email="contact@hlfh.space" },
+]
+description = "Mail client autoconfiguration service"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: OS Independent",
+    "Development Status :: 5 - Production/Stable"
+]
+dependencies =[
+    'Flask >= 1.1.1',
+    'Flask-Migrate >= 2.5.2',
+    'Flask-SQLAlchemy >= 2.4.1',
+    'ldap3 >= 2.6',
+]
+
+[project.urls]
+"Homepage" = "https://hlfh.github.io/automua"
+"Tracker" = "https://github.com/hlfh/automua/issues"
+"Source" = "https://github.com/hlfh/automua"
+
+[tool.hatch.version]
+path = "automua/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+    include = [
+      "/automua",
+      "/tests",
+      "/contrib/flask.sh",
+      "/contrib/setupvenv.sh"
+]

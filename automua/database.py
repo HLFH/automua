@@ -1,35 +1,36 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua', bug fix populatewithdict()
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 import sys
 from typing import Optional
 
-from automx2 import PLACEHOLDER_ADDRESS
-from automx2 import log
-from automx2.model import Davserver
-from automx2.model import Domain
-from automx2.model import Ldapserver
-from automx2.model import Provider
-from automx2.model import Server
-from automx2.model import db
-from automx2.util import from_dict
-from automx2.util import from_environ
-from automx2.util import unique
+from automua import PLACEHOLDER_ADDRESS
+from automua import log
+from automua.model import Davserver
+from automua.model import Domain
+from automua.model import Ldapserver
+from automua.model import Provider
+from automua.model import Server
+from automua.model import db
+from automua.util import from_dict
+from automua.util import from_environ
+from automua.util import unique
 
 LDAP_BIND_PASSWORD = from_environ('LDAP_BIND_PASSWORD')
 LDAP_BIND_USER = from_environ('LDAP_BIND_USER')
@@ -120,10 +121,11 @@ def populate_with_example_data():
 def populate_with_dict(config: dict) -> None:
     name: str = config['provider']
     short_name = name.split(' ')[0]
-    provider = Provider(id=Provider.query.count(), name=name, short_name=short_name)
+    pid = Provider.query.count()+1
+    provider = Provider(id=pid, name=name, short_name=short_name)
     db.session.add(provider)
     domains = []
-    did = Domain.query.count()
+    did = Domain.query.count()+1
     for domain in config['domains']:
         domains.append(Domain(id=did, name=domain, provider=provider))
         did += 1
@@ -132,7 +134,7 @@ def populate_with_dict(config: dict) -> None:
         return
     db.session.add_all(domains)
     servers = []
-    sid = Server.query.count()
+    sid = Server.query.count()+1
     for server in config['servers']:
         name = server['name']
         type_ = server['type']

@@ -1,0 +1,62 @@
+// vim:ts=4:sw=4:et:ft=asciidoc
+
+= automua: Email client configuration made easy
+:keywords: autoconfig, autodiscover, mobileconfig, automx, automx2, automua
+:subject: automua: Email client configuration made easy
+:revnumber: 2022.5
+:revdate: 2022-10-31
+:copyright: © 2019-2022 Ralph Seichter, Patrick Ben Koetter, Gaspard d'Hautefeuille
+:publisher: Gaspard d'Hautefeuille
+:lang: en
+:hyphens: en
+:encoding: UTF-8
+:pdf-version: 1.7
+:toc:
+:toclevels: 3
+:sectnums:
+:sectanchors:
+:pagenums:
+:icons: font
+:title-page:
+:media: print
+:source-highlighter: rouge
+:rouge-style: github
+:asciidoctor-diagram:
+
+[[copyright]]
+== Copyright
+
+automua is a fork of automx2.
+Check per-file copyright notices to see the sole modifications and the new files of the fork automua that are Copyright © 2022 Gaspard d'Hautefeuille.
+automx2 and most of the files of the fork are Copyright © 2019-2022 Ralph Seichter.
+Patrick Ben Koetter has contributed to the documentation.
+
+automua is licensed under the GNU General Public License V3 or later.
+The project is hosted on GitHub in the https://github.com/HLFH/automua[HLFH/automua] repository.
+
+[[contact]]
+== Contact
+
+If you have questions about setting up or operating automua, or if you would like to discuss or suggest features, please use https://github.com/HLFH/automua/issues[issue tracker,window=_blank].
+
+Should you be interested in supporting the project as a sponsor, you can find a contact email address in the <<sponsorship,sponsorship>> section.
+
+[[preface]]
+== Preface
+
+This document explains how automua works, how <<muaconf,automated mail client configuration>> works, and what it takes to install and configure automua. If you are already familiar with automated mailbox configuration methods you may want skip the following sections and jump right ahead to <<install>> and <<configure>>.
+
+include::operation.adoc[]
+include::muaconfig.adoc[]
+include::installation.adoc[]
+include::config.adoc[]
+include::dbconfig.adoc[]
+include::dbupgrade.adoc[]
+include::ldap.adoc[]
+include::running.adoc[]
+include::webserver.adoc[]
+
+[[sponsorship]]
+== Sponsorship
+
+If you are interested in sponsoring a specific feature, please contact me using the email address _<contact AT_ _hlfh_ _DOT_ _space>_.

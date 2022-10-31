@@ -1,31 +1,32 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 from flask import abort
 from flask import request
 from flask.views import MethodView
 
-from automx2 import AutomxException
-from automx2 import NotFoundException
-from automx2 import log
-from automx2.generators.apple import AppleGenerator
-from automx2.views import EMAIL_MOZILLA
-from automx2.views import MailConfig
+from automua import AutoMuaException
+from automua import NotFoundException
+from automua import log
+from automua.generators.apple import AppleGenerator
+from automua.views import EMAIL_MOZILLA
+from automua.views import MailConfig
 
 CONTENT_TYPE_APPLE = 'application/x-apple-aspen-config'
 
@@ -49,7 +50,7 @@ class AppleView(MailConfig, MethodView):
             return self.config_from_address(address, realname)
         except NotFoundException:
             return '', 204
-        except AutomxException as e:
+        except AutoMuaException as e:
             log.exception(e)
             abort(400)
 

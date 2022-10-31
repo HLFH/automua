@@ -1,27 +1,28 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 from configparser import ConfigParser
 from pathlib import Path
 
-from automx2 import IDENTIFIER
-from automx2 import log
-from automx2.util import from_environ
+from automua import IDENTIFIER
+from automua import log
+from automua.util import from_environ
 
 # Changing config keys will break existing end user config files.
 CONF_DB_ECHO = 'db_echo'
@@ -52,7 +53,7 @@ class Config:
             Path(f'/etc/{IDENTIFIER}', file_name),
             Path('/etc', file_name),
         ]
-        path = from_environ('AUTOMX2_CONF')
+        path = from_environ('AUTOMUA_CONF')
         if path:
             paths.insert(0, Path(path))
         for path in paths:

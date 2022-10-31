@@ -3,7 +3,7 @@
 [[ldap]]
 == LDAP support
 
-automx2 supports looking up user account data using LDAP.
+automua supports looking up user account data using LDAP.
 This is typically used to find users' login IDs for IMAP/SMTP authentication given an associated email address.
 Note that this is an optional configuration element commonly used by larger organisations.
 For smaller user bases, using <<placeholders,placeholders>> may be sufficient.
@@ -28,7 +28,7 @@ uidNumber: 4321
 [... more attributes here ...]
 ----
 
-In order to allow automx2 to connect, an entry similar to the following needs to be created in the database:
+In order to allow automua to connect, an entry similar to the following needs to be created in the database:
 
 [source,sql]
 ----
@@ -39,12 +39,12 @@ INSERT INTO ldapserver (
 ) VALUES (
     100, 'ldap.example.com', 636, 1,
     'ou=mailusers,dc=example,dc=com', '(mail={0})', 'uid', 'cn',
-    'PASSWORD', 'cn=automx2,ou=services,dc=example,dc=com'
+    'PASSWORD', 'cn=automua,ou=services,dc=example,dc=com'
 );
 ----
 
 An encrypted connection (LDAPS) is used and the filter and attribute names are set according to the LDIF above.
-It is assumed that `cn=automx2,ou=services,dc=example,dc=com` with the given password is permitted read-only access to the necessary LDAP records/attributes.
+It is assumed that `cn=automua,ou=services,dc=example,dc=com` with the given password is permitted read-only access to the necessary LDAP records/attributes.
 The search filter needs to contain the placeholder `{0}` which will be replaced with the email address used as the lookup key.
 
 Now all that is left is to connect the example.com domain to LDAP server ID 100:

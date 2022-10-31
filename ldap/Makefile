@@ -7,7 +7,7 @@ all:
 	@echo >&2 "Usage: make run"
 
 run:
-	docker run --rm --name automx2ldap --env LDAP_ORGANISATION=automx2 \
+	docker run --rm --name automualdap --env LDAP_ORGANISATION=automua \
 	--env LDAP_DOMAIN=example.com --env LDAP_ADMIN_PASSWORD=admin \
 	-v $(HERE)/tls:/container/service/slapd/assets/certs \
 	-v $(HERE)/conf:/etc/ldap/slapd.d \

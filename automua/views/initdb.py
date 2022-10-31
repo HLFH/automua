@@ -1,20 +1,21 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 from typing import Optional
 
@@ -22,10 +23,10 @@ from flask import request
 from flask import url_for
 from flask.views import MethodView
 
-from automx2.database import populate_db
-from automx2.database import purge_db
-from automx2.model import Provider
-from automx2.model import db
+from automua.database import populate_db
+from automua.database import purge_db
+from automua.model import Provider
+from automua.model import db
 
 
 class InitDatabase(MethodView):

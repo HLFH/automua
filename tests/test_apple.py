@@ -1,38 +1,39 @@
 """
+Copyright © 2022 Gaspard d'Hautefeuille: name change to 'automua'
 Copyright © 2019-2022 Ralph Seichter
 
-This file is part of automx2.
+This file is part of automua.
 
-automx2 is free software: you can redistribute it and/or modify
+automua is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-automx2 is distributed in the hope that it will be useful,
+automua is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with automx2. If not, see <https://www.gnu.org/licenses/>.
+along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 import unittest
 from typing import List
 from xml.dom import minidom
 from xml.dom.minidom import Element
 
-from automx2 import InvalidAuthenticationType
-from automx2 import PLACEHOLDER_ADDRESS
-from automx2.database import EGGS_DOMAIN
-from automx2.database import EXAMPLE_COM
-from automx2.database import EXAMPLE_NET
-from automx2.database import EXAMPLE_ORG
-from automx2.database import SERVERLESS_DOMAIN
-from automx2.database import sample_server_names
-from automx2.model import Server
-from automx2.server import APPLE_CONFIG_ROUTE
-from automx2.util import unique
-from automx2.views.mobileconfig import CONTENT_TYPE_APPLE
+from automua import InvalidAuthenticationType
+from automua import PLACEHOLDER_ADDRESS
+from automua.database import EGGS_DOMAIN
+from automua.database import EXAMPLE_COM
+from automua.database import EXAMPLE_NET
+from automua.database import EXAMPLE_ORG
+from automua.database import SERVERLESS_DOMAIN
+from automua.database import sample_server_names
+from automua.model import Server
+from automua.server import APPLE_CONFIG_ROUTE
+from automua.util import unique
+from automua.views.mobileconfig import CONTENT_TYPE_APPLE
 from tests.base import TestCase
 from tests.base import body
 
@@ -112,7 +113,7 @@ class AppleRoutes(TestCase):
             self.assertEqual(400, r.status_code)
 
     def test_sanitise_dict(self):
-        from automx2.generators.apple import _sanitise
+        from automua.generators.apple import _sanitise
         with self.app:
             d1 = {'b': PLACEHOLDER_ADDRESS}
             d2 = {'a': d1}
@@ -120,14 +121,14 @@ class AppleRoutes(TestCase):
             self.assertEqual('x@y', d1['b'])
 
     def test_sanitise_valid(self):
-        from automx2.generators.apple import _sanitise
+        from automua.generators.apple import _sanitise
         with self.app:
             d = {'a': PLACEHOLDER_ADDRESS}
             _sanitise(d, 'l', 'd')
             self.assertEqual('l@d', d['a'])
 
     def test_strip_none_values(self):
-        from automx2.util import strip_none_values
+        from automua.util import strip_none_values
         with self.app:
             b = unique()
             d = strip_none_values({'a': None, 'b': b})
@@ -135,21 +136,21 @@ class AppleRoutes(TestCase):
             self.assertEqual(b, d['b'])
 
     def test_map_bad_auth(self):
-        from automx2.generators.apple import _map_authentication
+        from automua.generators.apple import _map_authentication
         with self.app:
             s = Server(authentication='BAD')
             with self.assertRaises(InvalidAuthenticationType):
                 _map_authentication(s)
 
     def test_map_valid_auth(self):
-        from automx2.generators.apple import _map_authentication, AUTH_MAP
+        from automua.generators.apple import _map_authentication, AUTH_MAP
         with self.app:
             for k, v in AUTH_MAP.items():
                 s = Server(authentication=k)
                 self.assertEqual(AUTH_MAP[k], _map_authentication(s))
 
     def test_preferred_server(self):
-        from automx2.generators.apple import _preferred_server
+        from automua.generators.apple import _preferred_server
         imap1 = Server(id=1, prio=10, name='imap1', type='imap', socket_type='')
         imap2 = Server(id=2, prio=20, name='imap2', type='imap', socket_type='STARTTLS')
         smtp1 = Server(id=3, prio=20, name='smtp1', type='smtp', socket_type='STARTTLS')

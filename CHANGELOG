@@ -29,4 +29,8 @@
 
 2022.0 (2022-03-31): Simplified database initialisation is now possible via HTTP POST and a JSON payload.
 
-2022.1 (2022-05-19): Request content type verification now works if additional parameters like "charset" are passed.
+2022.1 (2022-05-20): Request content type verification now works if additional parameters like "charset" are passed.
+
+2022.2, 2022.3, 2022.4: Unpublished releases
+
+2022.5 (2022-10-31): Fork automx2 to automua. First automua public release. Avoid GPLv3 violation. Open project to contributors. Fix the database initialisation w/ HTTP POST & JSON payload (`automua/database.py`). Replace the deprecated setup.py by pyproject.toml. Use hatch to build and publish releases. Release for Arch Linux AUR and Python PyPI. Update docs and fix a few contrib files.

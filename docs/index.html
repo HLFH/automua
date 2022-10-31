@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="keywords" content="autoconfig, autodiscover, mobileconfig, automx, automx2">
-<meta name="copyright" content="© 2019-2022 Ralph Seichter">
-<title>automx2: Email client configuration made easy</title>
+<meta name="generator" content="Asciidoctor 2.0.18">
+<meta name="keywords" content="autoconfig, autodiscover, mobileconfig, automx, automx2, automua">
+<meta name="copyright" content="© 2019-2022 Ralph Seichter, Patrick Ben Koetter, Gaspard d'Hautefeuille">
+<title>automua: Email client configuration made easy</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -86,10 +86,10 @@ code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;
 ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
 ul,ol{margin-left:1.5em}
 ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
-ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
-ul.square{list-style-type:square}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
@@ -656,10 +656,10 @@ pre.rouge {
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>automx2: Email client configuration made easy</h1>
+<h1>automua: Email client configuration made easy</h1>
 <div class="details">
-<span id="revnumber">version 2022.1,</span>
-<span id="revdate">2022-05-19</span>
+<span id="revnumber">version 2022.5,</span>
+<span id="revdate">2022-10-31</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -667,7 +667,7 @@ pre.rouge {
 <li><a href="#copyright">1. Copyright</a></li>
 <li><a href="#contact">2. Contact</a></li>
 <li><a href="#preface">3. Preface</a></li>
-<li><a href="#operation">4. How does automx2 operate?</a></li>
+<li><a href="#operation">4. How does automua operate?</a></li>
 <li><a href="#muaconf">5. How does auto config work?</a>
 <ul class="sectlevel2">
 <li><a href="#autoconfig">5.1. Autoconfig</a></li>
@@ -676,12 +676,17 @@ pre.rouge {
 <li><a href="#dnsrr">5.4. DNS SRV resource records</a></li>
 </ul>
 </li>
-<li><a href="#install">6. Installing automx2</a></li>
-<li><a href="#configure">7. Configuring automx2</a>
+<li><a href="#install">6. Installing automua</a>
+<ul class="sectlevel2">
+<li><a href="#archlinux">6.1. Installing via Arch Linux AUR</a></li>
+<li><a href="#manual">6.2. Installing from command line</a></li>
+</ul>
+</li>
+<li><a href="#configure">7. Configuring automua</a>
 <ul class="sectlevel2">
 <li><a href="#placeholders">7.1. Placeholders</a></li>
 <li><a href="#_runtime_configuration">7.2. Runtime configuration</a></li>
-<li><a href="#_testing_standalone_automx2">7.3. Testing standalone automx2</a></li>
+<li><a href="#_testing_standalone_automua">7.3. Testing standalone automua</a></li>
 <li><a href="#dbconf">7.4. Database configuration</a>
 <ul class="sectlevel3">
 <li><a href="#_database_support">7.4.1. Database support</a></li>
@@ -694,14 +699,14 @@ pre.rouge {
 </ul>
 </li>
 <li><a href="#ldap">8. LDAP support</a></li>
-<li><a href="#run">9. Running automx2</a>
+<li><a href="#run">9. Running automua</a>
 <ul class="sectlevel2">
 <li><a href="#_as_a_openrc_service">9.1. As a OpenRC service</a></li>
 <li><a href="#_as_a_systemd_service">9.2. As a systemd service</a></li>
 <li><a href="#_manually_from_a_shell">9.3. Manually from a shell</a></li>
 </ul>
 </li>
-<li><a href="#localtest">10. Testing automx2 locally</a></li>
+<li><a href="#localtest">10. Testing automua locally</a></li>
 <li><a href="#wsconf">11. Configuring a web server</a>
 <ul class="sectlevel2">
 <li><a href="#nginx">11.1. NGINX</a></li>
@@ -717,9 +722,14 @@ pre.rouge {
 <h2 id="copyright"><a class="anchor" href="#copyright"></a>1. Copyright</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>automx2 is Copyright © 2019-2022 Ralph Seichter.
-automx2 is licensed under the GNU General Public License V3 or later.
-The project is hosted on GitHub in the <a href="https://github.com/rseichter/automx2">rseichter/automx2</a> repository.</p>
+<p>automua is a fork of automx2.
+Check per-file copyright notices to see the sole modifications and the new files of the fork automua that are Copyright © 2022 Gaspard d&#8217;Hautefeuille.
+automx2 and most of the files of the fork are Copyright © 2019-2022 Ralph Seichter.
+Patrick Ben Koetter has contributed to the documentation.</p>
+</div>
+<div class="paragraph">
+<p>automua is licensed under the GNU General Public License V3 or later.
+The project is hosted on GitHub in the <a href="https://github.com/HLFH/automua">HLFH/automua</a> repository.</p>
 </div>
 </div>
 </div>
@@ -727,10 +737,10 @@ The project is hosted on GitHub in the <a href="https://github.com/rseichter/aut
 <h2 id="contact"><a class="anchor" href="#contact"></a>2. Contact</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you have questions about setting up or operating automx2, or if you would like to discuss or suggest features, please use the <a href="https://mail.sys4.de/mailman/listinfo/automx-users" target="_blank" rel="noopener">mailing list</a> as the preferred means of contacting me.
-Doing so makes it easier for other users to participate, and it is usually low-traffic, so you need not worry about volume.
-There is also an <a href="https://github.com/rseichter/automx2/issues" target="_blank" rel="noopener">issue tracker</a> available.
-Should you be interested in supporting the project as a sponsor, you can find a contact email address in the <a href="#sponsorship">sponsorship</a> section.</p>
+<p>If you have questions about setting up or operating automua, or if you would like to discuss or suggest features, please use <a href="https://github.com/HLFH/automua/issues" target="_blank" rel="noopener">issue tracker</a>.</p>
+</div>
+<div class="paragraph">
+<p>Should you be interested in supporting the project as a sponsor, you can find a contact email address in the <a href="#sponsorship">sponsorship</a> section.</p>
 </div>
 </div>
 </div>
@@ -738,18 +748,18 @@ Should you be interested in supporting the project as a sponsor, you can find a 
 <h2 id="preface"><a class="anchor" href="#preface"></a>3. Preface</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document explains how automx2 works, how <a href="#muaconf">automated mail client configuration</a> works, and what it takes to install and configure automx2. If you are already familiar with automated mailbox configuration methods you may want skip the following sections and jump right ahead to <a href="#install">Installing automx2</a> and <a href="#configure">Configuring automx2</a>.</p>
+<p>This document explains how automua works, how <a href="#muaconf">automated mail client configuration</a> works, and what it takes to install and configure automua. If you are already familiar with automated mailbox configuration methods you may want skip the following sections and jump right ahead to <a href="#install">Installing automua</a> and <a href="#configure">Configuring automua</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="operation"><a class="anchor" href="#operation"></a>4. How does automx2 operate?</h2>
+<h2 id="operation"><a class="anchor" href="#operation"></a>4. How does automua operate?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>automx2 is a web service.
+<p>automua is a web service.
 It is usually located behind a web server like NGINX and waits for configuration requests.
 When a mail user agent (MUA), a.k.a. mail client, requests configuration it contacts the web server.
-The web server then acts as a proxy and forwards all requests to automx2 and passes answers back to the MUA.</p>
+The web server then acts as a proxy and forwards all requests to automua and passes answers back to the MUA.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -768,7 +778,7 @@ They will either send the user&#8217;s mail address to a service and ask the ser
 <div class="paragraph">
 <p>Using a specialized mail account configuration service allows for individualized setups.
 It also allows to enforce a specific policy, which for example configures the mail client to use a specific authentication mechanism.
-Quering the DNS for mail service locations allows for generic instructions, but it doesn&#8217;t give as much control over settings as a specialized service like automx2 will do.</p>
+Quering the DNS for mail service locations allows for generic instructions, but it doesn&#8217;t give as much control over settings as a specialized service like automua will do.</p>
 </div>
 <div class="paragraph">
 <p>As of today, there are four methods that help configuring a mail account.
@@ -783,9 +793,9 @@ The service will use the mail address to lookup configuration data and will retu
 Format – XML response or file – and complexity differ depending on the method.</p>
 </div>
 <div class="paragraph">
-<p>automx2 implements everything necessary to configure email accounts.
+<p>automua implements everything necessary to configure email accounts.
 Functionality to configure calendar or address book settings is not included.
-This may change in some future version, but the focus of automx2 is email.</p>
+This may change in some future version, but the focus of automua is email.</p>
 </div>
 <div class="sect2">
 <h3 id="autoconfig"><a class="anchor" href="#autoconfig"></a>5.1. Autoconfig</h3>
@@ -809,7 +819,7 @@ http://example.com/.well-known/autoconfig/mail/config-v1.1.xml</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A configuration service such as automx2 listening on one of the listed URIs will receive the request, process it and respond with a set of configuration instructions.</p>
+<p>A configuration service such as automua listening on one of the listed URIs will receive the request, process it and respond with a set of configuration instructions.</p>
 </div>
 <div class="paragraph">
 <p>Thunderbird will use the instructions to automatically fill in the required fields in the account.
@@ -821,9 +831,9 @@ After that she can immediately start to use her new mail account.</p>
 <h3 id="autodiscover"><a class="anchor" href="#autodiscover"></a>5.2. Autodiscover</h3>
 <div class="paragraph">
 <p>Autodiscover is a proprietary method developed by Microsoft.
-The protocol version supported by automx2 was designed to configure a mail account within Outlook 2016 ff.
+The protocol version supported by automua was designed to configure a mail account within Outlook 2016.
 Service lookups use the URLs shown below and, as a fallback option, DNS lookups.
-Please note that Microsft uses a different autodiscover mechanism for Office 365, which is not yet supported by automx2 because information about the technical details are not available free of charge.</p>
+Please note that Microsft uses a different autodiscover mechanism for Office 365, which is not yet supported by automua because information about the technical details are not available free of charge.</p>
 </div>
 <div class="listingblock small">
 <div class="content">
@@ -854,7 +864,7 @@ If the first DNS query fails the client may be redirected to a configuration ser
 <h3 id="mobileconfig"><a class="anchor" href="#mobileconfig"></a>5.3. Mobileconfig</h3>
 <div class="paragraph">
 <p>Requests and responses use proprietary content types with an underlying <a href="https://en.wikipedia.org/wiki/Property_list">property list</a> format.
-automx2 will return <em>unsigned</em> data, which means that the service must be accessed via HTTPS only.
+automua will return <em>unsigned</em> data, which means that the service must be accessed via HTTPS only.
 Otherwise, your users have no way of knowing if they access the correct service and will be vulnerable to man-in-the-middle attacks.</p>
 </div>
 </div>
@@ -874,10 +884,24 @@ _submission._tcp.example.com.   SRV  10  20  587  mail.example.com.</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="install"><a class="anchor" href="#install"></a>6. Installing automx2</h2>
+<h2 id="install"><a class="anchor" href="#install"></a>6. Installing automua</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="archlinux"><a class="anchor" href="#archlinux"></a>6.1. Installing via Arch Linux AUR</h3>
 <div class="paragraph">
-<p>automx2 requires Python version 3.7 or greater, ideally in the form of a virtual Python environment, to run.
+<p>automua has been released <a href="https://aur.archlinux.org/packages/automua">on Arch Linux AUR</a> to simplify the installation and the setup. You would require the Arch Linux distribution for that end.
+The AUR helper <a href="https://github.com/Jguer/yay">yay</a> is recommended.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">yay <span class="nt">-S</span> automua</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="manual"><a class="anchor" href="#manual"></a>6.2. Installing from command line</h3>
+<div class="paragraph">
+<p>automua requires Python version 3.7 or greater, ideally in the form of a virtual Python environment, to run.
 Check the python3 version like this:</p>
 </div>
 <div class="listingblock">
@@ -897,35 +921,35 @@ Python 3.9.11</code></pre>
 <div class="paragraph">
 <p>If you use a port number greater than 1024 (I suggest port 4243), the application does not require super user privileges when running.
 Doing so would pose a security risk and is therefore strongly discouraged.
-I recommend creating a fresh user account called <code>automx2</code>.</p>
+I recommend creating a fresh user account called <code>automua</code>.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Prepare the virtual environment for the automx2 web service, adjusting the installation path to your taste (automx2 itself does not care).
-The path <code>/srv/web/automx2</code> will be used as an example throughout this documentation.
+<p>Prepare the virtual environment for the automua web service, adjusting the installation path to your taste (automua itself does not care).
+The path <code>/srv/http/automua</code> will be used as an example throughout this documentation.
 The BASH shell commands below should work with any modern Linux distribution.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="c"># Best practice: Create a fresh user account.</span>
-<span class="nb">sudo </span>useradd <span class="nt">--home-dir</span> /srv/web/automx2 <span class="nt">--create-home</span> automx2
+<span class="nb">sudo </span>useradd <span class="nt">--home-dir</span> /srv/http/automua <span class="nt">--create-home</span> automua
 
 <span class="c"># Alternative: If the user account already exists.</span>
-<span class="c"># sudo bash -c 'mkdir -p /srv/web/automx2 &amp;&amp; chown automx2 /srv/web/automx2'</span></code></pre>
+<span class="c"># sudo bash -c 'mkdir -p /srv/http/automua &amp;&amp; chown automua /srv/http/automua'</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Next, make sure to either login as the user created above, or change to this user via the 'su' command.
 This is important to ensure the correct file permissions.
-Download the script that will download and setup your automx2 service:</p>
+Download the script that will download and setup your automua service:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd</span> /srv/web/automx2
-wget https://github.com/rseichter/automx2/raw/master/contrib/setupvenv.sh
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd</span> /srv/http/automua
+wget https://github.com/HLFH/automua/raw/master/contrib/setupvenv.sh
 <span class="nb">chmod </span>u+x setupvenv.sh</code></pre>
 </div>
 </div>
@@ -938,14 +962,14 @@ wget https://github.com/rseichter/automx2/raw/master/contrib/setupvenv.sh
 </div>
 </div>
 <div class="paragraph">
-<p>Activate the virtual environment and install the latest automx2 release from PyPI.
+<p>Activate the virtual environment and install the latest automua release from PyPI.
 Make sure to pick the correct activation for your shell from the <code>.venv/bin</code> directory.
 This is an example for BASH:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="nb">source</span> .venv/bin/activate
-pip <span class="nb">install </span>automx2</code></pre>
+pip <span class="nb">install </span>automua</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -955,16 +979,16 @@ pip <span class="nb">install </span>automx2</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="title">Updating to a newer automx2 release</div>
+<div class="title">Updating to a newer automua release</div>
 <div class="paragraph">
-<p>Change to the directory where automx2 has been installed previously.
+<p>Change to the directory where automua has been installed previously.
 Activate the virtual environment as usual and use pip&#8217;s <code>--upgrade</code> option:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd</span> /srv/web/automx2
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd</span> /srv/http/automua
 <span class="nb">source</span> .venv/bin/activate
-pip <span class="nb">install</span> <span class="nt">--upgrade</span> automx2</code></pre>
+pip <span class="nb">install</span> <span class="nt">--upgrade</span> automua</code></pre>
 </div>
 </div>
 </td>
@@ -973,24 +997,25 @@ pip <span class="nb">install</span> <span class="nt">--upgrade</span> automx2</c
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="configure"><a class="anchor" href="#configure"></a>7. Configuring automx2</h2>
+<h2 id="configure"><a class="anchor" href="#configure"></a>7. Configuring automua</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>automx2 uses a file to read runtime instructions from and a database to lookup mail account configuration data.</p>
+<p>automua uses a file to read runtime instructions from and a database to lookup mail account configuration data.</p>
 </div>
 <div class="sect2">
 <h3 id="placeholders"><a class="anchor" href="#placeholders"></a>7.1. Placeholders</h3>
 <div class="paragraph">
-<p>To make configuration more convenient, automx2 supports <a href="https://wiki.mozilla.org/Thunderbird:Autoconfiguration:ConfigFileFormat#Placeholders" target="_blank" rel="noopener">Mozilla-style placeholders</a>.
+<p>To make configuration more convenient, automua supports <a href="https://wiki.mozilla.org/Thunderbird:Autoconfiguration:ConfigFileFormat#Placeholders" target="_blank" rel="noopener">Mozilla-style placeholders</a>.
 For example, the string <code>%EMAILADDRESS%</code> in database records will be replaced with the email address specified during the query.
-While based on a proprietary feature of Autoconfig, automx2 also applies placeholders to Autodiscover and Mobileconfig responses.</p>
+While based on a proprietary feature of Autoconfig, automua also applies placeholders to Autodiscover and Mobileconfig responses.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_runtime_configuration"><a class="anchor" href="#_runtime_configuration"></a>7.2. Runtime configuration</h3>
 <div class="paragraph">
-<p>The configuration file defines automx2 runtime behaviour and it specifies the backend automx2 should read mailbox account configuration data from.</p>
+<p>The configuration file defines automua runtime behaviour and it specifies the backend automua should read mailbox account configuration data from.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1001,7 +1026,7 @@ While based on a proprietary feature of Autoconfig, automx2 also applies placeho
 <td class="content">
 <div class="title">Running without runtime config</div>
 <div class="paragraph">
-<p>If you launch automx2 without a configuration file, it will use internal defaults.
+<p>If you launch automua without a configuration file, it will use internal defaults.
 These are suitable for testing only.
 Launched without a config it will use an in-memory SQLite database and all data will be lost once the application terminates.</p>
 </div>
@@ -1010,66 +1035,66 @@ Launched without a config it will use an in-memory SQLite database and all data 
 </table>
 </div>
 <div class="paragraph">
-<p>During startup automx2 searches for runtime configuration instructions in the following locations.
+<p>During startup automua searches for runtime configuration instructions in the following locations.
 The first match will determine the configuration used.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="txt">env  : AUTOMX2_CONF  <i class="conum" data-value="1"></i><b>(1)</b>
-file : ~/.automx2.conf
-file : /etc/automx2/automx2.conf
-file : /etc/automx2.conf</code></pre>
+<pre class="rouge highlight"><code data-lang="txt">env  : AUTOMUA_CONF  <i class="conum" data-value="1"></i><b>(1)</b>
+file : ~/.automua.conf
+file : /etc/automua/automua.conf
+file : /etc/automua.conf</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>If present, the environment variable AUTOMX2_CONF must point to the absolute path of a configuration file.</td>
+<td>If present, the environment variable AUTOMUA_CONF must point to the absolute path of a configuration file.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To specify parameters and options automx2 uses an
+<p>To specify parameters and options automua uses an
 <a href="https://docs.python.org/3.9/library/configparser.html#supported-ini-file-structure">INI
 file</a> syntax.
 The
-<a href="https://github.com/rseichter/automx2/blob/master/contrib/automx2-sample.conf">example
-configuration</a> that ships with automx2 looks like this:</p>
+<a href="https://github.com/HLFH/automua/blob/master/contrib/automua-sample.conf">example
+configuration</a> that ships with automua looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="ini"><span class="nn">[automx2]</span>
+<pre class="rouge highlight"><code data-lang="ini"><span class="nn">[automua]</span>
 <span class="c"># A typical production setup would use loglevel WARNING.
 </span><span class="py">loglevel</span> <span class="p">=</span> <span class="s">DEBUG</span>
 <span class="c"># Echo SQL commands into log? Used for debugging.
 </span><span class="py">db_echo</span> <span class="p">=</span> <span class="s">no</span>
 <span class="c"># In-memory SQLite database
-</span><span class="py">db_uri</span> <span class="p">=</span> <span class="s">sqlite:///:memory:</span>
-
+#db_uri = sqlite:///:memory:
+</span>
 <span class="c"># SQLite database in a UNIX-like file system
-#db_uri = sqlite:////var/lib/automx2/db.sqlite
+#db_uri = sqlite:////var/lib/automua/db.sqlite
 </span>
 <span class="c"># MySQL database on a remote server. This example does not use an encrypted
 # connection and is therefore *not* recommended for production use.
-#db_uri = mysql://username:password@server.example.com/db
-</span>
-<span class="c"># Number of proxy servers between automx2 and the client (default: 0).
+</span><span class="py">db_uri</span> <span class="p">=</span> <span class="s">mysql://automua:REPLACEPASSWORD@localhost/automua</span>
+
+<span class="c"># Number of proxy servers between automua and the client (default: 0).
 # If your logs only show 127.0.0.1 or ::1 as the source IP for incoming
 # connections, proxy_count probably needs to be changed.
 </span><span class="py">proxy_count</span> <span class="p">=</span> <span class="s">1</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Place the content of the example configuration into one of the configuration locations automx2 looks for and adapt it to your needs.
+<p>Place the content of the example configuration into one of the configuration locations automua looks for and adapt it to your needs.
 Then configure the database backend with data that suits your setup, as described below.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_testing_standalone_automx2"><a class="anchor" href="#_testing_standalone_automx2"></a>7.3. Testing standalone automx2</h3>
+<h3 id="_testing_standalone_automua"><a class="anchor" href="#_testing_standalone_automua"></a>7.3. Testing standalone automua</h3>
 <div class="paragraph">
-<p>If you want to verify a vanilla installation of automx2 works, you can populate it with internal test data.
-Start automx2 as described in section <a href="#run">Running automx2</a> and send the following request to populate your database:</p>
+<p>If you want to verify a vanilla installation of automua works, you can populate it with internal test data.
+Start automua as described in section <a href="#run">Running automua</a> and send the following request to populate your database:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1077,10 +1102,10 @@ Start automx2 as described in section <a href="#run">Running automx2</a> and sen
 </div>
 </div>
 <div class="paragraph">
-<p>This example assumes you are running automx2 on localhost listening on TCP port 4243, which is the suggested default port.</p>
+<p>This example assumes you are running automua on localhost listening on TCP port 4243, which is the suggested default port.</p>
 </div>
 <div class="paragraph">
-<p>Once you have populated the database with sample data you can test if automx2 works.
+<p>Once you have populated the database with sample data you can test if automua works.
 Use curl to send an account configuration request for user@example.com:</p>
 </div>
 <div class="listingblock">
@@ -1096,7 +1121,7 @@ Otherwise, your command shell might perform pattern matching for characters like
 <div class="sect2">
 <h3 id="dbconf"><a class="anchor" href="#dbconf"></a>7.4. Database configuration</h3>
 <div class="paragraph">
-<p>automx2 uses the SQLAlchemy toolkit to access databases.
+<p>automua uses the SQLAlchemy toolkit to access databases.
 This allows a variety of databases, a.k.a. <a href="https://docs.sqlalchemy.org/en/latest/dialects/">dialects</a>, to be used, simply by defining the appropriate connection URL.</p>
 </div>
 <div class="admonitionblock note">
@@ -1147,7 +1172,7 @@ Be sure to limit access accordingly!</p>
 </table>
 </div>
 <div class="paragraph">
-<p>If you upgrade from an early automx2 release and wish to migrate your existing database, you can use the built-in Alembic support.
+<p>If you upgrade from an early automua release and wish to migrate your existing database, you can use the built-in Alembic support.
 However, this requires cloning the Git repository, modifying <code>alembic.ini</code> and invoking the migration from the command line.
 It is usually easier to export your existing data, create a fresh DB and import the data.</p>
 </div>
@@ -1155,20 +1180,20 @@ It is usually easier to export your existing data, create a fresh DB and import 
 <div class="sect3">
 <h4 id="_sqlite"><a class="anchor" href="#_sqlite"></a>7.4.2. SQLite</h4>
 <div class="paragraph">
-<p>This section demonstrates what you need to do to in order to use SQLite version 3 or higher as a backend database for automx2.</p>
+<p>This section demonstrates what you need to do to in order to use SQLite version 3 or higher as a backend database for automua.</p>
 </div>
 <div class="paragraph">
-<p>Step 1: Set the database URI in your automx2 configuration.
+<p>Step 1: Set the database URI in your automua configuration.
 Please note that specifying an absolute path for the database requires a total of four slashes after the schema identifier:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="ini"><span class="nn">[automx2]</span>
-<span class="py">db_uri</span> <span class="p">=</span> <span class="s">sqlite:////var/lib/automx2/db.sqlite</span></code></pre>
+<pre class="rouge highlight"><code data-lang="ini"><span class="nn">[automua]</span>
+<span class="py">db_uri</span> <span class="p">=</span> <span class="s">sqlite:////var/lib/automua/db.sqlite</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2: Launch automx2 and access the DB initialisation URL.</p>
+<p>Step 2: Launch automua and access the DB initialisation URL.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1179,7 +1204,7 @@ curl <span class="nt">-X</span> POST <span class="nt">--json</span> @mydata.json
 </div>
 </div>
 <div class="paragraph">
-<p>Starting with automx2 version 2022.0, JSON data can be used to populate the database in a simplified manner, without the need to use SQL statements.
+<p>Starting with automua version 2022.0, JSON data can be used to populate the database in a simplified manner, without the need to use SQL statements.
 The required data format is as follows:</p>
 </div>
 <div class="listingblock">
@@ -1195,7 +1220,7 @@ The required data format is as follows:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Using JSON is recommended when you are content with automx2 choosing some details like port numbers or socket types for you.</p>
+<p>Using JSON is recommended when you are content with automua choosing some details like port numbers or socket types for you.</p>
 </div>
 <div class="paragraph">
 <p>If you prefer SQL statements for greater control of the database content, the Git repository contains a <a href="../contrib/sqlite-generate.sh">sqlite-generate.sh</a> helper script which demonstrates how the database can be populated programmatically.
@@ -1213,15 +1238,15 @@ You only need to adapt a few settings according to your needs:</p>
 </div>
 <div class="paragraph">
 <p>The script will print the SQL statements to standard output, which can be piped into <code>sqlite3</code> for processing.
-Make sure to match the automx2.conf <code>db_uri</code> setting when specifying the database.</p>
+Make sure to match the automua.conf <code>db_uri</code> setting when specifying the database.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash">contrib/sqlite-generate.sh | sqlite3 /var/lib/automx2/db.sqlite</code></pre>
+<pre class="rouge highlight"><code data-lang="bash">contrib/sqlite-generate.sh | sqlite3 /var/lib/automua/db.sqlite</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Once you have populated the database automx2 is ready to run.</p>
+<p>Once you have populated the database automua is ready to run.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1231,21 +1256,21 @@ Make sure to match the automx2.conf <code>db_uri</code> setting when specifying 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="mysql">CREATE DATABASE `automx2` COLLATE 'utf8mb4_general_ci';</code></pre>
+<pre class="rouge highlight"><code data-lang="mysql">CREATE DATABASE `automua` COLLATE 'utf8mb4_general_ci';</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2: Set the database URI in your automx2 configuration.
-The following example uses <em>pymysql</em> as a DB driver, which is not included in the automx2 distribution.</p>
+<p>Step 2: Set the database URI in your automua configuration.
+The following example uses <em>pymysql</em> as a DB driver, which is not included in the automua distribution.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="ini"><span class="nn">[automx2]</span>
-<span class="py">db_uri</span> <span class="p">=</span> <span class="s">mysql+pymysql://user:pass@dbhost/automx2?charset=utf8mb4</span></code></pre>
+<pre class="rouge highlight"><code data-lang="ini"><span class="nn">[automua]</span>
+<span class="py">db_uri</span> <span class="p">=</span> <span class="s">mysql+pymysql://user:pass@dbhost/automua?charset=utf8mb4</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3: Launch automx2 and access the DB initialisation URL:</p>
+<p>Step 3: Launch automua and access the DB initialisation URL:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1260,21 +1285,21 @@ The following example uses <em>pymysql</em> as a DB driver, which is not include
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="postgresql">CREATE DATABASE automx2 LOCALE 'en_US.utf8';</code></pre>
+<pre class="rouge highlight"><code data-lang="postgresql">CREATE DATABASE automua LOCALE 'en_US.utf8';</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2: Set the database URI in your automx2 configuration.
-The following example uses <em>psycopg2</em> as a DB driver, which is not included in the automx2 distribution.</p>
+<p>Step 2: Set the database URI in your automua configuration.
+The following example uses <em>psycopg2</em> as a DB driver, which is not included in the automua distribution.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="ini"><span class="nn">[automx2]</span>
-<span class="py">db_uri</span> <span class="p">=</span> <span class="s">postgresql+psycopg2://user:pass@dbhost/automx2</span></code></pre>
+<pre class="rouge highlight"><code data-lang="ini"><span class="nn">[automua]</span>
+<span class="py">db_uri</span> <span class="p">=</span> <span class="s">postgresql+psycopg2://user:pass@dbhost/automua</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3: Launch automx2 and access the DB initialisation URL:</p>
+<p>Step 3: Launch automua and access the DB initialisation URL:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1294,19 +1319,19 @@ Follow the steps shown below, setting the <code>RELEASE</code> variable to the G
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="nb">export </span><span class="nv">RELEASE</span><span class="o">=</span><span class="s2">"2021.6"</span>
-wget https://github.com/rseichter/automx2/archive/refs/tags/<span class="nv">$RELEASE</span>.zip
+wget https://github.com/HLFH/automua/archive/refs/tags/<span class="nv">$RELEASE</span>.zip
 unzip <span class="nv">$RELEASE</span>.zip
-<span class="nb">cd </span>automx2-<span class="nv">$RELEASE</span>/alembic</code></pre>
+<span class="nb">cd </span>automua-<span class="nv">$RELEASE</span>/alembic</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Next, change the value for <em>sqlalchemy.url</em> in <code>alembic.ini</code> to match your automx2 configuration.
+<p>Next, change the value for <em>sqlalchemy.url</em> in <code>alembic.ini</code> to match your automua configuration.
 Create an empty database unless you are using SQLite, in which case Alembic will create the database for you.
-The final steps are activating the automx2 virtual Python environment and invoke <em>make</em>.</p>
+The final steps are activating the automua virtual Python environment and invoke <em>make</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nb">source</span> /path/to/automx2/.venv/bin/activate
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">source</span> /path/to/automua/.venv/bin/activate
 make upgrade</code></pre>
 </div>
 </div>
@@ -1315,11 +1340,11 @@ make upgrade</code></pre>
 </div>
 <div class="listingblock small">
 <div class="content">
-<pre class="rouge highlight"><code>PYTHONPATH=.. FLASK_APP=automx2.server:app flask db upgrade -d .
-Running automx2 version 2021.6
+<pre class="rouge highlight"><code>PYTHONPATH=.. FLASK_APP=automua.server:app flask db upgrade -d .
+Running automua version 2021.6
 INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
 INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
-INFO  [alembic.runtime.migration] Running upgrade  -&gt; f62e64b43d2f, DB schema for automx2 version 2020.0
+INFO  [alembic.runtime.migration] Running upgrade  -&gt; f62e64b43d2f, DB schema for automua version 2020.0
 Created: 2020-01-17 22:30:05.748651
 INFO  [alembic.runtime.migration] Running upgrade f62e64b43d2f -&gt; 5334f8a8282c, Add "prio" column to "server" table.
 Created: 2020-12-15 15:04:49.371802
@@ -1333,7 +1358,7 @@ INFO  [alembic.runtime.migration] Running upgrade 5334f8a8282c -&gt; 43ebb40d057
 <h2 id="ldap"><a class="anchor" href="#ldap"></a>8. LDAP support</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>automx2 supports looking up user account data using LDAP.
+<p>automua supports looking up user account data using LDAP.
 This is typically used to find users' login IDs for IMAP/SMTP authentication given an associated email address.
 Note that this is an optional configuration element commonly used by larger organisations.
 For smaller user bases, using <a href="#placeholders">placeholders</a> may be sufficient.</p>
@@ -1360,7 +1385,7 @@ uidNumber: 4321
 </div>
 </div>
 <div class="paragraph">
-<p>In order to allow automx2 to connect, an entry similar to the following needs to be created in the database:</p>
+<p>In order to allow automua to connect, an entry similar to the following needs to be created in the database:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1371,13 +1396,13 @@ uidNumber: 4321
 <span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
     <span class="mi">100</span><span class="p">,</span> <span class="s1">'ldap.example.com'</span><span class="p">,</span> <span class="mi">636</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s1">'ou=mailusers,dc=example,dc=com'</span><span class="p">,</span> <span class="s1">'(mail={0})'</span><span class="p">,</span> <span class="s1">'uid'</span><span class="p">,</span> <span class="s1">'cn'</span><span class="p">,</span>
-    <span class="s1">'PASSWORD'</span><span class="p">,</span> <span class="s1">'cn=automx2,ou=services,dc=example,dc=com'</span>
+    <span class="s1">'PASSWORD'</span><span class="p">,</span> <span class="s1">'cn=automua,ou=services,dc=example,dc=com'</span>
 <span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>An encrypted connection (LDAPS) is used and the filter and attribute names are set according to the LDIF above.
-It is assumed that <code>cn=automx2,ou=services,dc=example,dc=com</code> with the given password is permitted read-only access to the necessary LDAP records/attributes.
+It is assumed that <code>cn=automua,ou=services,dc=example,dc=com</code> with the given password is permitted read-only access to the necessary LDAP records/attributes.
 The search filter needs to contain the placeholder <code>{0}</code> which will be replaced with the email address used as the lookup key.</p>
 </div>
 <div class="paragraph">
@@ -1391,21 +1416,21 @@ The search filter needs to contain the placeholder <code>{0}</code> which will b
 </div>
 </div>
 <div class="sect1">
-<h2 id="run"><a class="anchor" href="#run"></a>9. Running automx2</h2>
+<h2 id="run"><a class="anchor" href="#run"></a>9. Running automua</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Running automx2 requires to start automx2 as service and serve its output via a web server to the public.
-You should not run automx2 with superuser privileges.
+<p>Running automua requires to start automua as service and serve its output via a web server to the public.
+You should not run automua with superuser privileges.
 Use a dedicated user instead.</p>
 </div>
 <div class="paragraph">
-<p>The following examples assume you have created a user and group <code>automx2</code>
+<p>The following examples assume you have created a user and group <code>automua</code>
 and have granted appropriate rights to this user:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Read permissions for the <code>automx2.conf</code> configuration file.</p>
+<p>Read permissions for the <code>automua.conf</code> configuration file.</p>
 </li>
 <li>
 <p>Read and access permissions for the virtual Python environment.</p>
@@ -1418,24 +1443,24 @@ and have granted appropriate rights to this user:</p>
 <div class="sect2">
 <h3 id="_as_a_openrc_service"><a class="anchor" href="#_as_a_openrc_service"></a>9.1. As a OpenRC service</h3>
 <div class="paragraph">
-<p>The following is an example for a OpenRC run script <code>/etc/init.d/automx2</code> which I use for Gentoo Linux:</p>
+<p>The following is an example for a OpenRC run script <code>/etc/init.d/automua</code> which I use for Gentoo Linux:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/sbin/openrc-run</span>
 <span class="c">#</span>
-<span class="c"># /etc/init.d/automx2</span>
+<span class="c"># /etc/init.d/automua</span>
 
-: <span class="k">${</span><span class="nv">AUTOMX2_CONF</span>:<span class="p">=</span><span class="s2">"/etc/</span><span class="k">${</span><span class="nv">RC_SVCNAME</span><span class="k">}</span><span class="s2">.conf"</span><span class="k">}</span>
-: <span class="k">${</span><span class="nv">AUTOMX2_USER</span>:<span class="p">=</span><span class="s2">"automx2"</span><span class="k">}</span>
-: <span class="k">${</span><span class="nv">AUTOMX2_ARGS</span>:<span class="p">=</span><span class="s2">"--port 4243"</span><span class="k">}</span>
+: <span class="k">${</span><span class="nv">AUTOMUA_CONF</span>:<span class="p">=</span><span class="s2">"/etc/</span><span class="k">${</span><span class="nv">RC_SVCNAME</span><span class="k">}</span><span class="s2">.conf"</span><span class="k">}</span>
+: <span class="k">${</span><span class="nv">AUTOMUA_USER</span>:<span class="p">=</span><span class="s2">"automua"</span><span class="k">}</span>
+: <span class="k">${</span><span class="nv">AUTOMUA_ARGS</span>:<span class="p">=</span><span class="s2">"--port 4243"</span><span class="k">}</span>
 
 <span class="nb">command</span><span class="o">=</span><span class="s2">"/usr/bin/python"</span>
-<span class="nv">command_args</span><span class="o">=</span><span class="s2">"/usr/bin/flask run </span><span class="k">${</span><span class="nv">AUTOMX2_ARGS</span><span class="k">}</span><span class="s2">"</span>
+<span class="nv">command_args</span><span class="o">=</span><span class="s2">"/usr/bin/flask run </span><span class="k">${</span><span class="nv">AUTOMUA_ARGS</span><span class="k">}</span><span class="s2">"</span>
 <span class="nv">command_background</span><span class="o">=</span><span class="s2">"true"</span>
-<span class="nv">command_user</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">AUTOMX2_USER</span><span class="k">}</span><span class="s2">"</span>
+<span class="nv">command_user</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">AUTOMUA_USER</span><span class="k">}</span><span class="s2">"</span>
 <span class="nv">pidfile</span><span class="o">=</span><span class="s2">"/run/</span><span class="k">${</span><span class="nv">RC_SVCNAME</span><span class="k">}</span><span class="s2">.pid"</span>
-<span class="nv">required_files</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">AUTOMX2_CONF</span><span class="k">}</span><span class="s2">"</span>
+<span class="nv">required_files</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">AUTOMUA_CONF</span><span class="k">}</span><span class="s2">"</span>
 
 depend<span class="o">()</span> <span class="o">{</span>
 	use logger net
@@ -1443,51 +1468,50 @@ depend<span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 
 start_pre<span class="o">()</span> <span class="o">{</span>
-	<span class="nb">export </span>AUTOMX2_CONF
+	<span class="nb">export </span>AUTOMUA_CONF
 	<span class="nb">export </span><span class="nv">EPYTHON</span><span class="o">=</span><span class="s2">"python3.9"</span>
-	<span class="nb">export </span><span class="nv">FLASK_APP</span><span class="o">=</span><span class="s2">"automx2.server:app"</span>
+	<span class="nb">export </span><span class="nv">FLASK_APP</span><span class="o">=</span><span class="s2">"automua.server:app"</span>
 	<span class="nb">export </span><span class="nv">FLASK_ENV</span><span class="o">=</span><span class="s2">"production"</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If you wish to override any of the settings, copy the following to <code>/etc/conf.d/automx2</code> and uncomment/change variables according to your needs.
+<p>If you wish to override any of the settings, copy the following to <code>/etc/conf.d/automua</code> and uncomment/change variables according to your needs.
 This is purely optional.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="c"># /etc/conf.d/automx2</span>
+<pre class="rouge highlight"><code data-lang="bash"><span class="c"># /etc/conf.d/automua</span>
 
 <span class="c"># Additional parameters passed to Flask</span>
-<span class="c">#AUTOMX2_ARGS="--host 127.0.0.1 --port 4243"</span>
+<span class="c">#AUTOMUA_ARGS="--host 127.0.0.1 --port 4243"</span>
 
 <span class="c"># Configuration file</span>
-<span class="c">#AUTOMX2_CONF="/etc/automx2.conf"</span>
+<span class="c">#AUTOMUA_CONF="/etc/automua.conf"</span>
 
 <span class="c"># Process owner (choose a non-privileged user)</span>
-<span class="c">#AUTOMX2_USER="automx2"</span></code></pre>
+<span class="c">#AUTOMUA_USER="automua"</span></code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_as_a_systemd_service"><a class="anchor" href="#_as_a_systemd_service"></a>9.2. As a systemd service</h3>
 <div class="paragraph">
-<p>If your system uses <em>systemd</em> you may want to deploy the following <a href="../contrib/automx2.service">automx2.service</a> unit file from the contrib section and place it in <code>/etc/systemd/system/automx2.service</code>:</p>
+<p>If your system uses <em>systemd</em> you may want to deploy the following <a href="../contrib/automua.service">automua.service</a> unit file from the contrib section and place it in <code>/etc/systemd/system/automua.service</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="ini"><span class="nn">[Unit]</span>
 <span class="py">After</span><span class="p">=</span><span class="s">network.target</span>
-<span class="py">Description</span><span class="p">=</span><span class="s">MUA configuration service</span>
-<span class="py">Documentation</span><span class="p">=</span><span class="s">https://rseichter.github.io/automx2/</span>
+<span class="py">Description</span><span class="p">=</span><span class="s">Auto MUA configuration service</span>
+<span class="py">Documentation</span><span class="p">=</span><span class="s">https://hlfh.github.io/automua/</span>
 
 <span class="nn">[Service]</span>
-<span class="py">Environment</span><span class="p">=</span><span class="s">FLASK_APP=automx2.server:app</span>
+<span class="py">Environment</span><span class="p">=</span><span class="s">FLASK_APP=automua.server:app</span>
 <span class="py">Environment</span><span class="p">=</span><span class="s">FLASK_CONFIG=production</span>
-<span class="py">ExecStart</span><span class="p">=</span><span class="s">/srv/www/automx2/bin/flask run --host=127.0.0.1 --port=4243</span>
+<span class="py">ExecStart</span><span class="p">=</span><span class="s">/srv/http/automua/.venv/bin/python /srv/http/automua/.venv/bin/flask run --host=127.0.0.1 --port=4243</span>
 <span class="py">Restart</span><span class="p">=</span><span class="s">always</span>
-<span class="py">User</span><span class="p">=</span><span class="s">automx2</span>
-<span class="py">WorkingDirectory</span><span class="p">=</span><span class="s">/var/lib/automx2</span>
+<span class="py">User</span><span class="p">=</span><span class="s">automua</span>
 
 <span class="nn">[Install]</span>
 <span class="py">WantedBy</span><span class="p">=</span><span class="s">multi-user.target</span></code></pre>
@@ -1502,47 +1526,47 @@ This is purely optional.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>It should now be able to tell you about a service named automx2:</p>
+<p>It should now be able to tell you about a service named automua:</p>
 </div>
 <div class="listingblock small">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>systemctl status automx2
-● automx2.service - MUA configuration service
-     Loaded: loaded <span class="o">(</span>/etc/systemd/system/automx2.service<span class="p">;</span> disabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>systemctl status automua
+● automua.service - MUA configuration service
+     Loaded: loaded <span class="o">(</span>/etc/systemd/system/automua.service<span class="p">;</span> disabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
      Active: inactive <span class="o">(</span>dead<span class="o">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Next enable and start automx2 using the following command:</p>
+<p>Next enable and start automua using the following command:</p>
 </div>
 <div class="listingblock small">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>systemctl <span class="nb">enable </span>automx2 <span class="nt">--now</span>
-Created symlink /etc/systemd/system/multi-user.target.wants/automx2.service → /etc/systemd/system/automx2.service.</code></pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>systemctl <span class="nb">enable </span>automua <span class="nt">--now</span>
+Created symlink /etc/systemd/system/multi-user.target.wants/automua.service → /etc/systemd/system/automua.service.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You should see automx2 enabled and running:</p>
+<p>You should see automua enabled and running:</p>
 </div>
 <div class="listingblock small">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>systemctl status automx2
-● automx2.service - MUA configuration service
-     Loaded: loaded <span class="o">(</span>/etc/systemd/system/automx2.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>systemctl status automua
+● automua.service - MUA configuration service
+     Loaded: loaded <span class="o">(</span>/etc/systemd/system/automua.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
      Active: active <span class="o">(</span>running<span class="o">)</span> since Mon 2021-03-01 12:54:31 CET<span class="p">;</span> 19s ago
    Main PID: 126966 <span class="o">(</span>python<span class="o">)</span>
       Tasks: 1 <span class="o">(</span>limit: 4620<span class="o">)</span>
      Memory: 46.1M
-     CGroup: /system.slice/automx2.service
-             └─126966 /srv/www/automx2/bin/flask run <span class="nt">--host</span><span class="o">=</span>127.0.0.1 <span class="nt">--port</span><span class="o">=</span>4243
+     CGroup: /system.slice/automua.service
+             └─126966 /srv/www/automua/bin/flask run <span class="nt">--host</span><span class="o">=</span>127.0.0.1 <span class="nt">--port</span><span class="o">=</span>4243
 <span class="o">[</span>...]
-Mar 01 12:54:32 mail python[126966]: Reading /etc/automx2.conf
+Mar 01 12:54:32 mail python[126966]: Reading /etc/automua.conf
 Mar 01 12:54:32 mail python[126966]: Config.get: loglevel <span class="o">=</span> WARNING
 Mar 01 12:54:32 mail python[126966]:  <span class="k">*</span> Running on http://127.0.0.1:4243/ <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You are now ready to start testing automx2, as described <a href="#localtest">below</a>.</p>
+<p>You are now ready to start testing automua, as described <a href="#localtest">below</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1552,7 +1576,7 @@ Mar 01 12:54:32 mail python[126966]:  <span class="k">*</span> Running on http:/
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd</span> /srv/web/automx2
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd</span> /srv/web/automua
 .venv/scripts/flask.sh run <span class="nt">--host</span><span class="o">=</span>127.0.0.1 <span class="nt">--port</span><span class="o">=</span>4243</code></pre>
 </div>
 </div>
@@ -1565,9 +1589,9 @@ Mar 01 12:54:32 mail python[126966]:  <span class="k">*</span> Running on http:/
 <td class="content">
 <div class="title">Handling terminal output</div>
 <div class="paragraph">
-<p>The launch script will deliberately keep automx2 running in the foreground, and log data will be displayed in the terminal.
+<p>The launch script will deliberately keep automua running in the foreground, and log data will be displayed in the terminal.
 If you press Ctrl-C or close the shell session, the application will terminate.
-To run automx2 in the background, you can use a window manager like <a href="https://www.gnu.org/software/screen/">GNU
+To run automua in the background, you can use a window manager like <a href="https://www.gnu.org/software/screen/">GNU
 Screen</a> or <a href="https://en.wikipedia.org/wiki/Tmux">tmux</a>.</p>
 </div>
 </td>
@@ -1575,16 +1599,16 @@ Screen</a> or <a href="https://en.wikipedia.org/wiki/Tmux">tmux</a>.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>Now that automx2 is up and running, you need to configure the web server proxy that will receive requests from the outside and forwards them to automx2.</p>
+<p>Now that automua is up and running, you need to configure the web server proxy that will receive requests from the outside and forwards them to automua.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="localtest"><a class="anchor" href="#localtest"></a>10. Testing automx2 locally</h2>
+<h2 id="localtest"><a class="anchor" href="#localtest"></a>10. Testing automua locally</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can use <em>curl</em> in a command shell to send a GET request to your local automx2-instance.
+<p>You can use <em>curl</em> in a command shell to send a GET request to your local automua-instance.
 The following example assumes your service runs on localhost on port 4243. The exact output depends on your database content, but should look similar.</p>
 </div>
 <div class="listingblock">
@@ -1595,7 +1619,7 @@ The following example assumes your service runs on localhost on port 4243. The e
 <div class="listingblock small">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="xml"><span class="nt">&lt;clientConfig</span> <span class="na">version=</span><span class="s">"1.1"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;emailProvider</span> <span class="na">id=</span><span class="s">"automx2-100"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;emailProvider</span> <span class="na">id=</span><span class="s">"automua-100"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;identity/&gt;</span>
         <span class="nt">&lt;domain&gt;</span>example.com<span class="nt">&lt;/domain&gt;</span>
         <span class="nt">&lt;displayName&gt;</span>Example Inc.<span class="nt">&lt;/displayName&gt;</span>
@@ -1627,7 +1651,7 @@ The following example assumes your service runs on localhost on port 4243. The e
 </div>
 </div>
 <div class="paragraph">
-<p>Having verified that automx2 returns configuration data, you should make the service available using a web server as a proxy.</p>
+<p>Having verified that automua returns configuration data, you should make the service available using a web server as a proxy.</p>
 </div>
 </div>
 </div>
@@ -1635,18 +1659,18 @@ The following example assumes your service runs on localhost on port 4243. The e
 <h2 id="wsconf"><a class="anchor" href="#wsconf"></a>11. Configuring a web server</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>While it is technically possible to run automx2 without a web server in front of it, I do not recommend doing that in a production environment.
-A web server can provide features automx2 was designed not to have.
+<p>While it is technically possible to run automua without a web server in front of it, I do not recommend doing that in a production environment.
+A web server can provide features automua was designed not to have.
 Features such as transport layer encryption for HTTPS (required for <a href="#mobileconfig">Mobileconfig</a>) or, for example, the capability to rate-limit clients are handled very well by full-fledged web servers working as reverse proxies.
 It would be a waste to re-implement all this in a web service.</p>
 </div>
 <div class="paragraph">
-<p>This section will explain how to configure a web server as a reverse proxy in front of automx2. Before you set up the proxy you need to tell automx2 it operates behind one.
-Add the <code>proxy_count</code> parameter to your automx2 configuration file or uncomment the parameter if it is already there:</p>
+<p>This section will explain how to configure a web server as a reverse proxy in front of automua. Before you set up the proxy you need to tell automua it operates behind one.
+Add the <code>proxy_count</code> parameter to your automua configuration file or uncomment the parameter if it is already there:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="ini"><span class="nn">[automx2]</span>
+<pre class="rouge highlight"><code data-lang="ini"><span class="nn">[automua]</span>
 <span class="c"># A typical production setup would use loglevel = WARNING
 </span><span class="py">loglevel</span> <span class="p">=</span> <span class="s">WARNING</span>
 
@@ -1654,9 +1678,9 @@ Add the <code>proxy_count</code> parameter to your automx2 configuration file or
 </span><span class="py">db_echo</span> <span class="p">=</span> <span class="s">no</span>
 
 <span class="c"># SQLite database in a UNIX-like file system
-</span><span class="py">db_uri</span> <span class="p">=</span> <span class="s">sqlite:////var/lib/automx2/db.sqlite</span>
+</span><span class="py">db_uri</span> <span class="p">=</span> <span class="s">sqlite:////var/lib/automua/db.sqlite</span>
 
-<span class="c"># Number of proxy servers between automx2 and the client (default: 0).
+<span class="c"># Number of proxy servers between automua and the client (default: 0).
 # If your logs only show 127.0.0.1 or ::1 as the source IP for incoming
 # connections, proxy_count probably needs to be changed.  <i class="conum" data-value="2"></i><b>(2)</b>
 </span><span class="py">proxy_count</span> <span class="p">=</span> <span class="s">1</span></code></pre>
@@ -1670,7 +1694,7 @@ Add the <code>proxy_count</code> parameter to your automx2 configuration file or
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Set the number to reflect the number of proxies chained in front of automx2, i.e. the number of "proxy hops" a client&#8217;s request must pass before it reaches automx2.</td>
+<td>Set the number to reflect the number of proxies chained in front of automua, i.e. the number of "proxy hops" a client&#8217;s request must pass before it reaches automua.</td>
 </tr>
 </table>
 </div>
@@ -1678,14 +1702,14 @@ Add the <code>proxy_count</code> parameter to your automx2 configuration file or
 <h3 id="nginx"><a class="anchor" href="#nginx"></a>11.1. NGINX</h3>
 <div class="paragraph">
 <p>The following example defines a HTTP server, which will listen for requests to both <em>autoconfig.example.com</em> and <em>autodiscover.example.com</em>.
-All requests will be forwarded to automx2, which listens on TCP port 4243 in this example.
+All requests will be forwarded to automua, which listens on TCP port 4243 in this example.
 Requests to <code>/initdb</code> are restricted to clients connecting from the local host.
 The
 <code>proxy_set_header</code> directives will cause NGINX to pass relevant data about incoming requests' origins.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="nginx"><span class="c1"># NGINX example configuration snippet to forward incoming requests to automx2.</span>
+<pre class="rouge highlight"><code data-lang="nginx"><span class="c1"># NGINX example configuration snippet to forward incoming requests to automua.</span>
 <span class="c1"># vim:ts=4:sw=4:et:ft=nginx</span>
 
 <span class="k">http</span> <span class="p">{</span>
@@ -1699,10 +1723,10 @@ The
             <span class="kn">deny</span> <span class="s">all</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
-            <span class="c1"># Forward all traffic to local automx2 service</span>
+            <span class="c1"># Forward all traffic to local automua service</span>
             <span class="kn">proxy_pass</span> <span class="s">http://127.0.0.1:4243/</span><span class="p">;</span>
             <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
-            <span class="c1"># Set config parameter proxy_count=1 to have automx2 process these headers</span>
+            <span class="c1"># Set config parameter proxy_count=1 to have automua process these headers</span>
             <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-Proto</span> <span class="s">http</span><span class="p">;</span>
             <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
             <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
@@ -1720,7 +1744,7 @@ The
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="apache"><span class="c"># Apache 2.4 example configuration snippet to forward incoming requests to automx2.</span>
+<pre class="rouge highlight"><code data-lang="apache"><span class="c"># Apache 2.4 example configuration snippet to forward incoming requests to automua.</span>
 <span class="c"># vim:ts=4:sw=4:et:ft=apache</span>
 
 <span class="p">&lt;</span><span class="nl">VirtualHost</span><span class="sr"> *:80</span><span class="p">&gt;
@@ -1745,15 +1769,15 @@ The
 <h2 id="sponsorship"><a class="anchor" href="#sponsorship"></a>12. Sponsorship</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you are interested in sponsoring a specific feature, please contact me using the email address <em>&lt;automx2 AT</em> <em>seichter DOT</em> <em>de&gt;</em>.</p>
+<p>If you are interested in sponsoring a specific feature, please contact me using the email address <em>&lt;contact AT</em> <em>hlfh</em> <em>DOT</em> <em>space&gt;</em>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2022.1<br>
-Last updated 2022-05-19 19:56:43 +0200
+Version 2022.5<br>
+Last updated 2022-10-31 12:33:15 UTC
 </div>
 </div>
 </body>

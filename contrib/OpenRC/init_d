@@ -1,17 +1,17 @@
 #!/sbin/openrc-run
 #
-# /etc/init.d/automx2
+# /etc/init.d/automua
 
-: ${AUTOMX2_CONF:="/etc/${RC_SVCNAME}.conf"}
-: ${AUTOMX2_USER:="automx2"}
-: ${AUTOMX2_ARGS:="--port 4243"}
+: ${AUTOMUA_CONF:="/etc/${RC_SVCNAME}.conf"}
+: ${AUTOMUA_USER:="automua"}
+: ${AUTOMUA_ARGS:="--port 4243"}
 
 command="/usr/bin/python"
-command_args="/usr/bin/flask run ${AUTOMX2_ARGS}"
+command_args="/usr/bin/flask run ${AUTOMUA_ARGS}"
 command_background="true"
-command_user="${AUTOMX2_USER}"
+command_user="${AUTOMUA_USER}"
 pidfile="/run/${RC_SVCNAME}.pid"
-required_files="${AUTOMX2_CONF}"
+required_files="${AUTOMUA_CONF}"
 
 depend() {
 	use logger net
@@ -19,8 +19,8 @@ depend() {
 }
 
 start_pre() {
-	export AUTOMX2_CONF
+	export AUTOMUA_CONF
 	export EPYTHON="python3.9"
-	export FLASK_APP="automx2.server:app"
+	export FLASK_APP="automua.server:app"
 	export FLASK_ENV="production"
 }
