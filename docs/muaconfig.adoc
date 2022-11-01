@@ -57,7 +57,7 @@ After that she can immediately start to use her new mail account.
 Autodiscover is a proprietary method developed by Microsoft.
 The protocol version supported by automua was designed to configure a mail account within Outlook 2016.
 Service lookups use the URLs shown below and, as a fallback option, DNS lookups.
-Please note that Microsft uses a different autodiscover mechanism for Office 365, which is not yet supported by automua because information about the technical details are not available free of charge.
+Please note that Microsoft uses a different autodiscover mechanism for Office 365, which is not yet supported by automua because information about the technical details are not available free of charge.
 
 [source,text]
 [.small]
