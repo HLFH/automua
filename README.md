@@ -7,7 +7,7 @@ and Mozilla's [Autoconfig](https://hlfh.github.io/autoconfiguration/) in one too
 automua is a fork of automx2. It accepts code contributions.
 
 ## Copyright
-automua is a fork of automx2.
+automua is a fork of [automx2](https://github.com/rseichter/automx2).
 Check per-file copyright notices to see the sole modifications and the new files of the fork automua that are Copyright © 2022 Gaspard d'Hautefeuille.
 automx2 and most of the files of the fork are Copyright © 2019-2022 Ralph Seichter.
 
