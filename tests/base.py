@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: set get_msoft_config with https NS
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -91,7 +92,7 @@ class TestCase(unittest.TestCase):
 
     def get_msoft_config(self, address: str, route: str = MSOFT_CONFIG_ROUTE) -> Response:
         data = (
-            f'<Autodiscover xmlns="{NS_REQUEST}">'
+            f'<Autodiscover xmlns="{NS_REQUEST[1]}">'
             f'<AcceptableResponseSchema>{NS_RESPONSE_PAYLOAD}</AcceptableResponseSchema>'
             '<Request>'
             f'<{EMAIL_OUTLOOK}>{address}</{EMAIL_OUTLOOK}>'
