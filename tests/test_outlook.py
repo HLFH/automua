@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: replace ElementTree XML API by lxml, and ParseError by XMLSyntaxError
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -21,9 +22,9 @@ along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
 import unittest
 from typing import List
-from xml.etree.ElementTree import Element
-from xml.etree.ElementTree import ParseError
-from xml.etree.ElementTree import fromstring
+from lxml.etree import Element
+from lxml.etree import XMLSyntaxError
+from lxml.etree import fromstring
 
 from automua.generators.outlook import NS_RESPONSE_PAYLOAD
 from automua.database import EGGS_DOMAIN
@@ -62,7 +63,7 @@ class MsRoutes(TestCase):
 
     def test_ms_empty_post(self):
         with self.app:
-            with self.assertRaises(ParseError):
+            with self.assertRaises(XMLSyntaxError):
                 self.post(MSOFT_CONFIG_ROUTE, data=None, content_type=CONTENT_TYPE_XML)
 
     def test_ms_partial_post(self):
