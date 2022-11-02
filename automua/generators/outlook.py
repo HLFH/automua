@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: fix NS_REQUEST w/ https support
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -34,7 +35,7 @@ from automua.model import Server
 from automua.util import expand_placeholders
 from automua.util import socket_type_needs_ssl
 
-NS_REQUEST = 'http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006'
+NS_REQUEST = ['http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006', 'https://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006']
 NS_RESPONSE_PAYLOAD = 'http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a'
 NS_RESPONSE_ROOT = 'http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006'
 
