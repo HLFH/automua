@@ -35,7 +35,7 @@ from automua.model import Server
 from automua.util import expand_placeholders
 from automua.util import socket_type_needs_ssl
 
-NS_REQUEST = ['http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006', 'https://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006']
+NS_REQUEST = ['http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006', 'https://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006', 'http://schemas.microsoft.com/exchange/autodiscover/mobilesync/requestschema/2006']
 NS_RESPONSE_PAYLOAD = 'http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a'
 NS_RESPONSE_ROOT = 'http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006'
 
