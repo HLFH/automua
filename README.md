@@ -13,6 +13,12 @@ automx2 and most of the files of the fork are Copyright © 2019-2022 Ralph Seich
 
 automua is licensed under the GNU General Public License V3 or later. The project is hosted on GitHub in the [HLFH/automua](https://github.com/HLFH/automua) repository. It is published on [PyPI.org](https://pypi.org/project/automua/) and [Arch Linux AUR](https://aur.archlinux.org/packages/automua).
 
+## Advantages
+automua as a fork of automx2 has a few advantages:
+ - automua is working [better with Autodiscover](https://github.com/HLFH/automua/issues/6) ;
+ - automua is working [better with Python 3.10+](https://github.com/HLFH/automua/issues/1) ;
+ - automua supports [Arch Linux](https://aur.archlinux.org/packages/automua).
+
 ## Documentation
 
 Detailed documentation is available in [HTML](https://hlfh.github.io/automua/),
