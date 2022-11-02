@@ -2,7 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
-Copyright © 2022 Gaspard d'Hautefeuille: replace ElementTree XML API by lxml, and ParseError by XMLSyntaxError
+Copyright © 2022 Gaspard d'Hautefeuille: replace ElementTree XML API by lxml, ParseError by XMLSyntaxError, add test_invalid_namespace
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -36,6 +36,7 @@ from automua.database import sample_server_names
 from automua.server import MSOFT_ALTERNATE_ROUTE
 from automua.server import MSOFT_CONFIG_ROUTE
 from automua.views import CONTENT_TYPE_XML
+from automua.views import EMAIL_OUTLOOK
 from tests.base import TestCase
 from tests.base import body
 
@@ -69,6 +70,22 @@ class MsRoutes(TestCase):
     def test_ms_partial_post(self):
         with self.app:
             self.post(MSOFT_CONFIG_ROUTE, data='<ham/>', content_type=CONTENT_TYPE_XML)
+    
+    def test_invalid_namespace(self):
+        with self.app:
+            address = f'a@{EXAMPLE_NET}'
+            data = (
+                f'<Autodiscover xmlns="myinvalidnamespace">'
+                f'<AcceptableResponseSchema>{NS_RESPONSE_PAYLOAD}</AcceptableResponseSchema>'
+                '<Request>'
+                f'<{EMAIL_OUTLOOK}>{address}</{EMAIL_OUTLOOK}>'
+                '</Request>'
+                '</Autodiscover>'
+            )
+            r = self.post(MSOFT_CONFIG_ROUTE, data=data, content_type=CONTENT_TYPE_XML)
+            self.assertEqual(400, r.status_code)
+            response = list(r.response)
+            self.assertEqual(response[0].decode('utf-8', 'strict'), 'Invalid XML namespace')
 
     def test_ms_no_content_type(self):
         with self.app:
