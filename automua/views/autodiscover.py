@@ -45,7 +45,7 @@ class OutlookView(MailConfig, MethodView):
             message = 'Unexpected content type'
             log.error(message)
             return message, 400
-        element: Element = fromstring(str(request.data, encoding='utf-8', errors='strict'))
+        element: Element = fromstring(str(request.data))
         ns = element.xpath("namespace-uri()")
         if ns in NS_REQUEST: 
             element = element.find(f'n:Request/n:{EMAIL_OUTLOOK}', {'n': ns}) 
