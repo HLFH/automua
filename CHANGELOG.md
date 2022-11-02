@@ -30,4 +30,4 @@
 
 2022.6 (2022-11-02): fix Autodiscover endpoint: replace ElementTree XML API by lxml, fix NS_REQUEST with https support, add test_invalid_namespace
 
-2022.6.1 (2022-11-02): lxml fromstring: remove unnecessary encoding & errors arguments
+2022.6.1, 2022.6.2 (2022-11-02): lxml fromstring: remove unnecessary encoding & errors arguments
