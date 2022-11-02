@@ -27,3 +27,5 @@
 2022.2, 2022.3, 2022.4: Unpublished releases
 
 2022.5 (2022-10-31): Fork automx2 to automua. First automua public release. Avoid GPLv3 violation. Open project to contributors. Fix the database initialisation w/ HTTP POST & JSON payload (`automua/database.py`). Replace the deprecated setup.py by pyproject.toml. Use hatch to build and publish releases on Python PyPI. Packages for Arch Linux AUR and Python PyPI. Update docs and fix a few contrib files.  
+
+2022.6 (2022-11-02): fix Autodiscover endpoint: replace ElementTree XML API by lxml, fix NS_REQUEST with https support, add test_invalid_namespace
