@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: replace ElementTree XML API by lxml ; fix OutlookView() & NS_REQUEST https support
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -19,8 +20,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with automua. If not, see <https://www.gnu.org/licenses/>.
 """
-from xml.etree.ElementTree import Element
-from xml.etree.ElementTree import fromstring
+from lxml.etree import Element
+from lxml.etree import fromstring
 
 from flask import abort
 from flask import request
@@ -45,8 +46,13 @@ class OutlookView(MailConfig, MethodView):
             log.error(message)
             return message, 400
         element: Element = fromstring(str(request.data, encoding='utf-8', errors='strict'))
-        ns = {'n': NS_REQUEST}
-        element = element.find(f'n:Request/n:{EMAIL_OUTLOOK}', ns)
+        ns = element.xpath("namespace-uri()")
+        if ns in NS_REQUEST: 
+            element = element.find(f'n:Request/n:{EMAIL_OUTLOOK}', {'n': ns}) 
+        else: 
+            message = 'Invalid XML namespace'
+            log.error(message)
+            return message, 400
         if element is None:
             message = f'Missing request argument "{EMAIL_OUTLOOK}"'
             log.error(message)
