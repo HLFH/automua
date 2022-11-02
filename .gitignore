@@ -6,3 +6,7 @@
 build/
 dist/
 htmlcov/
+automua/__pycache__/
+automua/generators/__pycache__/
+automua/views/__pycache__/
+tests/__pycache__/
