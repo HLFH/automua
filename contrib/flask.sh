@@ -21,8 +21,8 @@ source .venv/bin/activate
 # files, set the following environment variable to an absolute path.
 #export AUTOMUA_CONF='/path/to/your/automua.conf'
 
-# Set the following to either 'development' or 'production'.
-export FLASK_ENV='production'
+# Set the following to either 'true' or 'false'.
+export FLASK_DEBUG=false
 
 # User configurable section -- END
 
