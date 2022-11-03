@@ -2,7 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
-Copyright © 2022 Gaspard d'Hautefeuille: set get_msoft_config with https NS
+Copyright © 2022 Gaspard d'Hautefeuille: set get_msoft_config with first XML NS from NS_MAP
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -24,8 +24,7 @@ import unittest
 
 from flask import Response
 
-from automua.generators.outlook import NS_REQUEST
-from automua.generators.outlook import NS_RESPONSE_PAYLOAD
+from automua.generators.outlook import NS_MAP
 from automua.database import LDAP_BIND_PASSWORD
 from automua.database import LDAP_BIND_USER
 from automua.database import LDAP_HOSTNAME
@@ -91,9 +90,10 @@ class TestCase(unittest.TestCase):
         return self.get(f'{MOZILLA_CONFIG_ROUTE}?{EMAIL_MOZILLA}={address}')
 
     def get_msoft_config(self, address: str, route: str = MSOFT_CONFIG_ROUTE) -> Response:
+        ns = 'http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006'
         data = (
-            f'<Autodiscover xmlns="{NS_REQUEST[1]}">'
-            f'<AcceptableResponseSchema>{NS_RESPONSE_PAYLOAD}</AcceptableResponseSchema>'
+            f'<Autodiscover xmlns='{NS_MAP[ns]['root']}'>'
+            f'<AcceptableResponseSchema>{NS_MAP[ns]['payload']}</AcceptableResponseSchema>'
             '<Request>'
             f'<{EMAIL_OUTLOOK}>{address}</{EMAIL_OUTLOOK}>'
             '</Request>'
