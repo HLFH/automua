@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: fix Autodiscover requests
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -38,12 +39,12 @@ CONTENT_TYPE_XML = 'application/xml'
 class MailConfig:
     CONTENT_TYPE_RE = re.compile(r'\b(?:application|text)/xml\b', re.IGNORECASE)
 
-    def config_from_address(self, address: str, realname: str = '', password: str = '') -> Response:
+    def config_from_address(self, address: str, ns_response: str, realname: str = '', password: str = '') -> Response:
         local_part, domain_part = parse_email_address(address)
-        data = self.config_response(local_part, domain_part, realname, password)
+        data = self.config_response(local_part, domain_part, ns_response, realname, password)
         return self.response_with_type(data)
 
-    def config_response(self, local_part, domain_part: str, realname: str, password: str) -> str:
+    def config_response(self, local_part, domain_part: str, ns_response: str, realname: str, password: str) -> str:
         raise NotImplementedError
 
     @staticmethod
