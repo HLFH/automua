@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: fix Autodiscover requests
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -43,7 +44,7 @@ def xml_to_string(root_element: Element) -> str:
 
 
 class ConfigGenerator:
-    def client_config(self, local_part: str, domain_part: str, display_name: str) -> str:
+    def client_config(self, local_part: str, domain_part: str, ns_response: str, display_name: str) -> str:
         raise NotImplementedError
 
     @staticmethod
