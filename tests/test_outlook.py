@@ -2,7 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
-Copyright © 2022 Gaspard d'Hautefeuille: replace ElementTree XML API by lxml, ParseError by XMLSyntaxError, add test_invalid_namespace
+Copyright © 2022 Gaspard d'Hautefeuille: set lxml, XMLSyntaxError, test_invalid_namespace, NS_MAP
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -26,7 +26,7 @@ from lxml.etree import Element
 from lxml.etree import XMLSyntaxError
 from lxml.etree import fromstring
 
-from automua.generators.outlook import NS_RESPONSE_PAYLOAD
+from automua.generators.outlook import NS_MAP
 from automua.database import EGGS_DOMAIN
 from automua.database import EXAMPLE_COM
 from automua.database import EXAMPLE_NET
@@ -46,7 +46,7 @@ class MsRoutes(TestCase):
 
     @staticmethod
     def server_elements(element: Element, server_type: str) -> List[Element]:
-        ns = {'n': NS_RESPONSE_PAYLOAD}
+        ns = {'n': 'http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a'}
         r = []
         for p in element.findall('n:Response/n:Account/n:Protocol', ns):
             if p.find('n:Type', ns).text == server_type:
@@ -76,7 +76,7 @@ class MsRoutes(TestCase):
             address = f'a@{EXAMPLE_NET}'
             data = (
                 f'<Autodiscover xmlns="myinvalidnamespace">'
-                f'<AcceptableResponseSchema>{NS_RESPONSE_PAYLOAD}</AcceptableResponseSchema>'
+                f'<AcceptableResponseSchema>http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a</AcceptableResponseSchema>'
                 '<Request>'
                 f'<{EMAIL_OUTLOOK}>{address}</{EMAIL_OUTLOOK}>'
                 '</Request>'
