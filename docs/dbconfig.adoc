@@ -31,6 +31,10 @@ Alternatively, you can send a POST request with custom JSON data to the same end
 ====
 Sending a HTTP DELETE request to `/initdb/` will purge all existing data.
 Be sure to limit access accordingly!
+[source,bash]
+----
+curl -X DELETE http://127.0.0.1:4243/initdb/
+----
 ====
 
 If you upgrade from an early automua release and wish to migrate your existing database, you can use the built-in Alembic support.
