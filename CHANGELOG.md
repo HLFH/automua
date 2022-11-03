@@ -31,3 +31,5 @@
 2022.6 (2022-11-02): start fixing Autodiscover requests: replace ElementTree XML API by lxml, expand support for Outlook namespaces uris, add test_invalid_namespace
 
 2022.6.1, 2022.6.2, 2022.6.3 (2022-11-02): lxml fromstring: remove unnecessary encoding & errors arguments, support Autodiscover mobilesync namespace
+
+2022.6.4 (2022-11-3): implement better Autodiscover support
