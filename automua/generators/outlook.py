@@ -40,16 +40,6 @@ NS_MAP = {
     {
         'root': 'http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006',
         'payload': 'http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a'
-    },
-    'https://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006':
-    {
-        'root': 'https://schemas.microsoft.com/exchange/autodiscover/responseschema/2006',
-        'payload': 'https://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a'
-    },
-    'http://schemas.microsoft.com/exchange/autodiscover/mobilesync/requestschema/2006':
-    {
-        'root': 'http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006',
-        'payload': 'http://schemas.microsoft.com/exchange/autodiscover/mobilesync/responseschema/2006'
     }
 }
 DAVSERVER_TYPE_MAP = {
