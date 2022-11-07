@@ -92,8 +92,8 @@ class TestCase(unittest.TestCase):
     def get_msoft_config(self, address: str, route: str = MSOFT_CONFIG_ROUTE) -> Response:
         ns = 'http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006'
         data = (
-            f'<Autodiscover xmlns='{NS_MAP[ns]['root']}'>'
-            f'<AcceptableResponseSchema>{NS_MAP[ns]['payload']}</AcceptableResponseSchema>'
+            f"<Autodiscover xmlns='{NS_MAP[ns]['root']}'>"
+            f"<AcceptableResponseSchema>{NS_MAP[ns]['payload']}</AcceptableResponseSchema>"
             '<Request>'
             f'<{EMAIL_OUTLOOK}>{address}</{EMAIL_OUTLOOK}>'
             '</Request>'
