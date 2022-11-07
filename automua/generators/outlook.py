@@ -35,13 +35,10 @@ from automua.model import Server
 from automua.util import expand_placeholders
 from automua.util import socket_type_needs_ssl
 
-NS_MAP = {
-    'http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006':
-    {
-        'root': 'http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006',
-        'payload': 'http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a'
-    }
-}
+NS_REQUEST = 'http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006'
+NS_RESPONSE_ROOT = 'http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006'
+NS_RESPONSE_PAYLOAD = 'http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a'
+
 DAVSERVER_TYPE_MAP = {
     'caldav': 'CalDAV',
     'carddav': 'CardDAV',
@@ -98,10 +95,10 @@ class OutlookGenerator(ConfigGenerator):
         element = SubElement(parent, 'User')
         SubElement(element, 'DisplayName').text = display_name
 
-    def client_config(self, local_part, domain_part: str, ns_response: str, display_name: str) -> str:
+    def client_config(self, local_part, domain_part: str, display_name: str) -> str:
         domain: Domain = Domain.query.filter_by(name=domain_part).first()
-        root_element = Element('Autodiscover', attrib={'xmlns': ns_response['root']})
-        response = SubElement(root_element, 'Response', attrib={'xmlns': ns_response['payload']})
+        root_element = Element('Autodiscover', attrib={'xmlns': NS_RESPONSE_ROOT})
+        response = SubElement(root_element, 'Response', attrib={'xmlns': NS_RESPONSE_PAYLOAD})
         if not domain:
             raise DomainNotFound(f'Domain "{domain_part}" not found')
         if domain.ldapserver:

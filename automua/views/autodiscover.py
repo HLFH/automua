@@ -30,7 +30,7 @@ from flask.views import MethodView
 from automua import AutoMuaException
 from automua import NotFoundException
 from automua import log
-from automua.generators.outlook import NS_MAP
+from automua.generators.outlook import NS_REQUEST
 from automua.generators.outlook import OutlookGenerator
 from automua.views import EMAIL_OUTLOOK
 from automua.views import MailConfig
@@ -47,8 +47,7 @@ class OutlookView(MailConfig, MethodView):
             return message, 400
         element: Element = fromstring(request.data)
         ns = element.xpath("namespace-uri()")
-        if ns in NS_MAP: 
-            ns_response = NS_MAP[ns]
+        if ns == NS_REQUEST:
             element = element.find(f'n:Request/n:{EMAIL_OUTLOOK}', {'n': ns})
         else: 
             message = 'Invalid XML namespace'
@@ -59,13 +58,13 @@ class OutlookView(MailConfig, MethodView):
             log.error(message)
             return message, 400
         try:
-            return self.config_from_address(element.text, ns_response)
+            return self.config_from_address(element.text)
         except NotFoundException:
             return '', 204
         except AutoMuaException as e:
             log.exception(e)
             abort(400)
 
-    def config_response(self, local_part, domain_part: str, ns_response: str, realname: str, password: str) -> str:
-        data = OutlookGenerator().client_config(local_part, domain_part, ns_response, realname)
+    def config_response(self, local_part, domain_part: str, realname: str, password: str) -> str:
+        data = OutlookGenerator().client_config(local_part, domain_part, realname)
         return data
