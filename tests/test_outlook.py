@@ -2,7 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
-Copyright © 2022 Gaspard d'Hautefeuille: set lxml, XMLSyntaxError, test_invalid_namespace, NS_MAP
+Copyright © 2022 Gaspard d'Hautefeuille: set lxml, XMLSyntaxError, test_invalid_namespace
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -26,7 +26,6 @@ from lxml.etree import Element
 from lxml.etree import XMLSyntaxError
 from lxml.etree import fromstring
 
-from automua.generators.outlook import NS_MAP
 from automua.database import EGGS_DOMAIN
 from automua.database import EXAMPLE_COM
 from automua.database import EXAMPLE_NET
