@@ -32,6 +32,6 @@
 
 2022.6.1, 2022.6.2, 2022.6.3 (2022-11-02): lxml fromstring: remove unnecessary encoding & errors arguments, test Autodiscover mobilesync and POX namespaces
 
-2022.6.4 (2022-11-3): improve Autodiscover support
+2022.6.4 (2022-11-3), 2022.6.5 (2022-11-7) : improve and fix Autodiscover implementation
 
-2022.6.5 (2022-11-7): fix Autodiscover implementation 
+2022.6.6 (2022-11-7): replace SSL by TLS as much as possible
