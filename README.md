@@ -32,7 +32,7 @@ Use [Apple Configurator](https://apps.apple.com/app/apple-configurator-2/id10371
 
 [MS-OXDSCLI Autodiscover Publishing and Lookup Protocol](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxdscli/78530279-d042-4eb0-a1f4-03b18143cd19)
 
-Mozilla THunderbird is looking up with [Autodiscover](https://github.com/mozilla/releases-comm-central/blob/master/mail/components/accountcreation/ExchangeAutoDiscover.jsm) before Autoconfig.
+Mozilla Thunderbird is looking up with [Autodiscover](https://github.com/mozilla/releases-comm-central/blob/master/mail/components/accountcreation/ExchangeAutoDiscover.jsm) before Autoconfig.
 
 
 ## Contributing
