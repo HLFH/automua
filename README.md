@@ -27,7 +27,7 @@ Detailed documentation is available in [HTML](https://hlfh.github.io/automua/),
 
 ## Dev notes
 
-[Mobileconfig payload](https://support.apple.com/en-gb/guide/deployment/dep9c14bfc5/1/web/1.0)
+[Mobileconfig payload](https://support.apple.com/en-gb/guide/deployment/dep9c14bfc5/1/web/1.0)  
 Use [Apple Configurator](https://apps.apple.com/app/apple-configurator-2/id1037126344) to go into details.
 
 [MS-OXDSCLI Autodiscover Publishing and Lookup Protocol](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxdscli/78530279-d042-4eb0-a1f4-03b18143cd19)
