@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: fix socketType
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -48,7 +49,10 @@ class MozillaGenerator(ConfigGenerator):
         element = SubElement(parent, f'{direction}Server', attrib={'type': type_attrib})
         SubElement(element, 'hostname').text = server.name
         SubElement(element, 'port').text = str(server.port)
-        SubElement(element, 'socketType').text = server.socket_type
+        if server.socket_type == 'TLS':
+          SubElement(element, 'socketType').text = 'SSL'
+        else:
+            SubElement(element, 'socketType').text = server.socket_type
         SubElement(element, 'username').text = self.pick_one(server.user_name, override_uid)
         SubElement(element, 'authentication').text = server.authentication
 
