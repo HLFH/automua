@@ -2,7 +2,10 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
-Copyright © 2022 Gaspard d'Hautefeuille: fix Autodiscover requests, replace SSL by TLS
+Dev notes: we keep the SSL element as the Thunderbird autodiscovery process does not support yet the Encryption element
+See: https://bugzilla.mozilla.org/show_bug.cgi?id=1799635
+
+Copyright © 2022 Gaspard d'Hautefeuille: fix Autodiscover requests, replace SSL by TLS, consider Thunderbird bug
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -33,6 +36,7 @@ from automua.model import Davserver
 from automua.model import Domain
 from automua.model import Server
 from automua.util import expand_placeholders
+from automua.util import socket_type_needs_tls
 
 NS_REQUEST = 'http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006'
 NS_RESPONSE_ROOT = 'http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006'
@@ -67,8 +71,12 @@ class OutlookGenerator(ConfigGenerator):
         SubElement(element, 'Server').text = server.url
         if server.port > 0:
             SubElement(element, 'Port').text = str(server.port)
-        if server.use_ssl:       
+        if server.use_ssl:
+            SubElement(element, 'SSL').text = 'on'       
             SubElement(element, 'Encryption').text = 'TLS'
+        else:
+            SubElement(element, 'SSL').text = 'off'       
+            SubElement(element, 'Encryption').text = 'None'
         SubElement(element, 'DomainRequired').text = self.on_off(server.domain_required)
         if login_name:
             SubElement(element, 'LoginName').text = login_name
@@ -79,6 +87,7 @@ class OutlookGenerator(ConfigGenerator):
         SubElement(element, 'Server').text = server.name
         SubElement(element, 'Port').text = str(server.port)
         SubElement(element, 'LoginName').text = login_name
+        SubElement(element, 'SSL').text = self.on_off(socket_type_needs_tls(server.socket_type))
         SubElement(element, 'Encryption').text = server.socket_type
 
     @staticmethod
