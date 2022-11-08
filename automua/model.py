@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: set default socket_type to TLS
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -54,7 +55,7 @@ class Server(db.Model):
     name = db.Column(db.String(128), nullable=False)
     port = db.Column(db.Integer, nullable=False)
     type = db.Column(db.String(32), nullable=False)
-    socket_type = db.Column(db.String(32), nullable=False, default='STARTTLS')
+    socket_type = db.Column(db.String(32), nullable=False, default='TLS')
     user_name = db.Column(db.String(64), nullable=False, default=PLACEHOLDER_ADDRESS)
     authentication = db.Column(db.String(32), nullable=False, default='plain')
     domains = db.relationship('Domain', secondary=server_domain_map, lazy='subquery',

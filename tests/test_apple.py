@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: replace SSL by TLS
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -156,7 +157,7 @@ class AppleRoutes(TestCase):
         imap1 = Server(id=1, prio=10, name='imap1', type='imap', socket_type='')
         imap2 = Server(id=2, prio=20, name='imap2', type='imap', socket_type='STARTTLS')
         smtp1 = Server(id=3, prio=20, name='smtp1', type='smtp', socket_type='STARTTLS')
-        smtp2 = Server(id=4, prio=20, name='smtp2', type='smtp', socket_type='SSL')
+        smtp2 = Server(id=4, prio=20, name='smtp2', type='smtp', socket_type='TLS')
         servers = [imap1, imap2, smtp1, smtp2]
         with self.app:
             self.assertIsNone(_preferred_server([imap1], 'smtp'))

@@ -2,7 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
-Copyright © 2022 Gaspard d'Hautefeuille: bug fix JSON upload w/ populatewithdict()
+Copyright © 2022 Gaspard d'Hautefeuille: bug fix JSON upload, replace SSL by TLS
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -152,7 +152,7 @@ def populate_with_dict(config: dict) -> None:
             sys.exit(1)
         prio = from_dict(server, 'prio', 10)
         if port in [465, 993, 995]:
-            s = 'SSL'
+            s = 'TLS'
         else:
             s = 'STARTTLS'
         servers.append(Server(id=sid, prio=prio, type=type_, port=port, socket_type=s, name=name, domains=domains))

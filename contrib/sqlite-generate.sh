@@ -54,9 +54,9 @@ fi
 cat << EOT
 DELETE FROM server;
 INSERT INTO server(id, prio, port, type, name, socket_type, user_name, authentication)
-  VALUES(${s1_id}, 5, 993, 'imap', '${IMAP_SERVER}', 'SSL', '%EMAILADDRESS%', 'plain');
+  VALUES(${s1_id}, 5, 993, 'imap', '${IMAP_SERVER}', 'TLS', '%EMAILADDRESS%', 'plain');
 INSERT INTO server(id, prio, port, type, name, socket_type, user_name, authentication)
-  VALUES(${s2_id}, 15, 995, 'pop', '${POP_SERVER}', 'SSL', '%EMAILADDRESS%', 'plain');
+  VALUES(${s2_id}, 15, 995, 'pop', '${POP_SERVER}', 'TLS', '%EMAILADDRESS%', 'plain');
 INSERT INTO server(id, prio, port, type, name, socket_type, user_name, authentication)
   VALUES(${s3_id}, 10, 110, 'pop', '${POP_SERVER}', 'STARTTLS', '%EMAILADDRESS%', 'plain');
 INSERT INTO server(id, prio, port, type, name, socket_type, user_name, authentication)

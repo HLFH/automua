@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: replace SSL by TLS
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -36,7 +37,7 @@ from automua.model import Domain
 from automua.model import Provider
 from automua.model import Server
 from automua.util import expand_placeholders
-from automua.util import socket_type_needs_ssl
+from automua.util import socket_type_needs_tls
 from automua.util import strip_none_values
 from automua.util import unique
 
@@ -153,7 +154,7 @@ def _preferred_server(servers: List[Server], type_: str) -> Server:
     This code will find the preferred server of a given type, based on the DB records' priorities
     and on whether candidates support encryption or not.
     """
-    encrypted = ['SSL', 'STARTTLS']
+    encrypted = ['SSL', 'TLS', 'STARTTLS']
     # noinspection PyTypeChecker
     server: Server = None
     for s in servers:
@@ -199,7 +200,7 @@ class AppleGenerator(ConfigGenerator):
             account[f'{direction}MailServerPortNumber'] = server.port
             account[f'{direction}MailServerUsername'] = self.pick_one(server.user_name, lookup_result.uid)
             account[f'{direction}MailServerAuthentication'] = _map_authentication(server)
-            account[f'{direction}MailServerUseSSL'] = socket_type_needs_ssl(server.socket_type)
+            account[f'{direction}MailServerUseSSL'] = socket_type_needs_tls(server.socket_type)
         config = _config_payload(domain_part, strip_none_values(account))
         _sanitise(config, local_part, domain_part)
         _subtree(root_element, '', config)

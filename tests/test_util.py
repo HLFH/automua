@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: replace SSL by TLS
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -30,7 +31,7 @@ from automua.util import expand_placeholders
 from automua.util import from_dict
 from automua.util import from_environ
 from automua.util import parse_email_address
-from automua.util import socket_type_needs_ssl
+from automua.util import socket_type_needs_tls
 from automua.util import unique
 
 
@@ -83,10 +84,11 @@ class UtilTests(unittest.TestCase):
         self.assertEqual('3a4', expand_placeholders(f'3{PLACEHOLDER_LOCALPART}4', local, domain))
         self.assertEqual('5b.c6', expand_placeholders(f'5{PLACEHOLDER_DOMAIN}6', local, domain))
 
-    def test_needs_ssl(self):
-        self.assertTrue(socket_type_needs_ssl('SSL'))
-        self.assertFalse(socket_type_needs_ssl('STARTTLS'))
-        self.assertFalse(socket_type_needs_ssl('INVALID'))
+    def test_needs_tls(self):
+        self.assertTrue(socket_type_needs_tls('SSL'))
+        self.assertTrue(socket_type_needs_tls('TLS'))
+        self.assertFalse(socket_type_needs_tls('STARTTLS'))
+        self.assertFalse(socket_type_needs_tls('INVALID'))
 
 
 if __name__ == '__main__':

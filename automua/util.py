@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: replace SSL by TLS
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -69,14 +70,16 @@ def expand_placeholders(string: str, local_part: str, domain_part: str) -> str:
     return string
 
 
-def socket_type_needs_ssl(socket_type: str):
-    """Map socket type to True (use SSL) or False (do not use SSL)."""
+def socket_type_needs_tls(socket_type: str):
+    """Map socket type to True (use TLS) or False (do not use TLS)."""
     if 'SSL' == socket_type:
+        return True
+    elif 'TLS' == socket_type:
         return True
     elif 'STARTTLS' != socket_type:
         """
-        Existing versions auf automua return False for socket types other than
-        SSL and STARTTLS. This can cause unexpected results. Future automua versions
+        Existing versions of automua return False for socket types other than
+        SSL, TLS and STARTTLS. This can cause unexpected results. Future automua versions
         will raise an exception for invalid socket types, so log an error to notify
         users of this upcoming change.
         """
