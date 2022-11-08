@@ -34,4 +34,4 @@
 
 2022.6.4 (2022-11-3), 2022.6.5 (2022-11-7) : improve and fix Autodiscover implementation
 
-2022.6.6 (2022-11-7): replace SSL by TLS as much as possible
+2022.6.6, 2022.6.7 (2022-11-8): replace SSL by TLS as much as possible
