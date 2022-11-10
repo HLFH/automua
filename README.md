@@ -15,7 +15,7 @@ automua is licensed under the GNU General Public License V3 or later. The projec
 
 ## Advantages
 automua as a fork of automx2 has a few advantages:
- - automua is working [better with Autodiscover](https://github.com/HLFH/automua/issues/6) with modern Outlook clients such as *Outlook 2021 for Mac*;
+ - automua is working [better with Autodiscover](https://github.com/HLFH/automua/issues/6) ;
  - automua implements [PEP 517 & PEP 518](https://github.com/HLFH/automua/issues/1) ;
  - automua supports [Arch Linux](https://aur.archlinux.org/packages/automua).
 
