@@ -35,3 +35,5 @@
 2022.6.4 (2022-11-3), 2022.6.5 (2022-11-7) : improve and fix Autodiscover implementation
 
 2022.6.6, 2022.6.7, 2022.6.8 (2022-11-8): replace SSL by TLS as much as possible. Note that Thunderbird does not support the Encryption element of the Autodiscover protocol.
+
+2022.7 (2022-11-10): replace legacy backref by back_populates: final fix for the database init w/ HTTP POST & JSON payload
