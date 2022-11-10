@@ -124,11 +124,11 @@ def populate_with_example_data():
 def populate_with_dict(config: dict) -> None:
     name: str = config['provider']
     short_name = name.split(' ')[0]
-    pid = Provider.query.count()+1
+    pid = Provider.query.count()
     provider = Provider(id=pid, name=name, short_name=short_name)
     db.session.add(provider)
     domains = []
-    did = Domain.query.count()+1
+    did = Domain.query.count()
     for domain in config['domains']:
         domains.append(Domain(id=did, name=domain, provider=provider))
         did += 1
@@ -137,7 +137,7 @@ def populate_with_dict(config: dict) -> None:
         return
     db.session.add_all(domains)
     servers = []
-    sid = Server.query.count()+1
+    sid = Server.query.count()
     for server in config['servers']:
         name = server['name']
         type_ = server['type']
