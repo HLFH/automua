@@ -2,7 +2,9 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
-Copyright © 2022 Gaspard d'Hautefeuille: bug fix JSON upload, replace SSL by TLS
+Copyright © 2022 Gaspard d'Hautefeuille: replacing SSL by TLS
+Gradual migration to sqlalchemy 2.0 new ORM usage (deprecating the legacy Query API).
+
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -34,6 +36,8 @@ from automua.model import db
 from automua.util import from_dict
 from automua.util import from_environ
 from automua.util import unique
+
+from sqlalchemy import func, select
 
 LDAP_BIND_PASSWORD = from_environ('LDAP_BIND_PASSWORD')
 LDAP_BIND_USER = from_environ('LDAP_BIND_USER')
@@ -124,11 +128,11 @@ def populate_with_example_data():
 def populate_with_dict(config: dict) -> None:
     name: str = config['provider']
     short_name = name.split(' ')[0]
-    pid = Provider.query.count()
+    pid = db.session.scalar(select(func.count()).select_from(Provider))
     provider = Provider(id=pid, name=name, short_name=short_name)
     db.session.add(provider)
     domains = []
-    did = Domain.query.count()
+    did = db.session.scalar(select(func.count()).select_from(Domain))
     for domain in config['domains']:
         domains.append(Domain(id=did, name=domain, provider=provider))
         did += 1
@@ -137,7 +141,7 @@ def populate_with_dict(config: dict) -> None:
         return
     db.session.add_all(domains)
     servers = []
-    sid = Server.query.count()
+    sid = db.session.scalar(select(func.count()).select_from(Server))
     for server in config['servers']:
         name = server['name']
         type_ = server['type']

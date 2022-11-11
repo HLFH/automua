@@ -2,6 +2,9 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: gradual migration to sqlalchemy 2.0 
+new ORM usage (deprecating the legacy Query API).
+
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -30,6 +33,7 @@ from automua.database import purge_db
 from automua.model import Provider
 from automua.model import db
 
+from sqlalchemy import func, select
 
 class InitDatabase(MethodView):
     """Initialise database."""
@@ -41,7 +45,8 @@ class InitDatabase(MethodView):
 
     def init_db(self, data: Optional[dict]) -> str:
         db.create_all()
-        if Provider.query.count() == 0:
+        pid = db.session.scalar(select(func.count()).select_from(Provider))
+        if pid == 0:
             populate_db(data)
             db.session.commit()
             m = 'Database is now prepared'

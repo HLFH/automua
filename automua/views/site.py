@@ -2,6 +2,9 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: gradual migration to sqlalchemy 2.0 
+new ORM usage (deprecating the legacy Query API).
+
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -26,8 +29,10 @@ from sqlalchemy.exc import OperationalError
 from automua import log
 from automua.database import EXAMPLE_COM
 from automua.model import Provider
+from automua.model import db
 from automua.views import EMAIL_MOZILLA
 
+from sqlalchemy import func, select
 
 class SiteRoot(MethodView):
     """The site's root page."""
@@ -35,7 +40,7 @@ class SiteRoot(MethodView):
     # noinspection PyMethodMayBeStatic
     def get(self):
         try:
-            Provider.query.count()
+            db.session.scalar(select(func.count()).select_from(Provider))
         except OperationalError as e:
             log.error(e)
             url = url_for('initdb')
