@@ -25,19 +25,11 @@ along with automua. If not, see <https://www.gnu.org/licenses/>.
 import sys
 from typing import Optional
 
-from automua import PLACEHOLDER_ADDRESS
-from automua import log
-from automua.model import Davserver
-from automua.model import Domain
-from automua.model import Ldapserver
-from automua.model import Provider
-from automua.model import Server
-from automua.model import db
-from automua.util import from_dict
-from automua.util import from_environ
-from automua.util import unique
-
 from sqlalchemy import func, select
+
+from automua import PLACEHOLDER_ADDRESS, log
+from automua.model import Davserver, Domain, Ldapserver, Provider, Server, db
+from automua.util import from_dict, from_environ, unique
 
 LDAP_BIND_PASSWORD = from_environ('LDAP_BIND_PASSWORD')
 LDAP_BIND_USER = from_environ('LDAP_BIND_USER')
