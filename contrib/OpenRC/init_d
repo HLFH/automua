@@ -21,6 +21,6 @@ depend() {
 start_pre() {
 	export AUTOMUA_CONF
 	export EPYTHON="python3.9"
-	export FLASK_APP="automua.server:app"
+	export FLASK_APP="automua.server:create_app"
 	export FLASK_ENV="production"
 }

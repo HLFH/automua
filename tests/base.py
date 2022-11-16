@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: use Flask app factory create_app
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -36,7 +37,7 @@ from automua.model import db
 from automua.server import APPLE_CONFIG_ROUTE
 from automua.server import MOZILLA_CONFIG_ROUTE
 from automua.server import MSOFT_CONFIG_ROUTE
-from automua.server import app
+from automua.server import create_app as app
 from automua.util import from_environ
 from automua.views import CONTENT_TYPE_XML
 from automua.views import EMAIL_MOZILLA

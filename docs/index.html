@@ -658,8 +658,8 @@ pre.rouge {
 <div id="header">
 <h1>automua: Email client configuration made easy</h1>
 <div class="details">
-<span id="revnumber">version 2022.6.8,</span>
-<span id="revdate">2022-11-08</span>
+<span id="revnumber">version 2022.7,</span>
+<span id="revdate">2022-11-10</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1345,7 +1345,7 @@ make upgrade</code></pre>
 </div>
 <div class="listingblock small">
 <div class="content">
-<pre class="rouge highlight"><code>PYTHONPATH=.. FLASK_APP=automua.server:app flask db upgrade -d .
+<pre class="rouge highlight"><code>PYTHONPATH=.. FLASK_APP=automua.server:create_app flask db upgrade -d .
 Running automua version 2021.6
 INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
 INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
@@ -1475,7 +1475,7 @@ depend<span class="o">()</span> <span class="o">{</span>
 start_pre<span class="o">()</span> <span class="o">{</span>
 	<span class="nb">export </span>AUTOMUA_CONF
 	<span class="nb">export </span><span class="nv">EPYTHON</span><span class="o">=</span><span class="s2">"python3.9"</span>
-	<span class="nb">export </span><span class="nv">FLASK_APP</span><span class="o">=</span><span class="s2">"automua.server:app"</span>
+	<span class="nb">export </span><span class="nv">FLASK_APP</span><span class="o">=</span><span class="s2">"automua.server:create_app"</span>
 	<span class="nb">export </span><span class="nv">FLASK_ENV</span><span class="o">=</span><span class="s2">"production"</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1512,7 +1512,7 @@ This is purely optional.</p>
 <span class="py">Documentation</span><span class="p">=</span><span class="s">https://hlfh.github.io/automua/</span>
 
 <span class="nn">[Service]</span>
-<span class="py">Environment</span><span class="p">=</span><span class="s">FLASK_APP=automua.server:app</span>
+<span class="py">Environment</span><span class="p">=</span><span class="s">FLASK_APP=automua.server:create_app</span>
 <span class="py">Environment</span><span class="p">=</span><span class="s">FLASK_CONFIG=production</span>
 <span class="py">ExecStart</span><span class="p">=</span><span class="s">/srv/http/automua/.venv/bin/python /srv/http/automua/.venv/bin/flask run --host=127.0.0.1 --port=4243</span>
 <span class="py">Restart</span><span class="p">=</span><span class="s">always</span>
@@ -1781,8 +1781,8 @@ The
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2022.6.8<br>
-Last updated 2022-11-08 11:11:07 UTC
+Version 2022.7<br>
+Last updated 2022-11-10 20:45:37 UTC
 </div>
 </div>
 </body>

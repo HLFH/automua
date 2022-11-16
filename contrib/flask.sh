@@ -26,5 +26,5 @@ export FLASK_CONFIG='production'
 
 # User configurable section -- END
 
-export FLASK_APP='automua.server:app'
+export FLASK_APP='automua.server:create_app'
 flask "$@"

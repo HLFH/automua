@@ -28,7 +28,7 @@ You should see output similar to the following:
 [source]
 [.small]
 ----
-PYTHONPATH=.. FLASK_APP=automua.server:app flask db upgrade -d .
+PYTHONPATH=.. FLASK_APP=automua.server:create_app flask db upgrade -d .
 Running automua version 2021.6
 INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
 INFO  [alembic.runtime.migration] Will assume non-transactional DDL.

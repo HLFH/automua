@@ -2,6 +2,7 @@
 automua™ is a trademark of "Gaspard d'Hautefeuille" and may not be used 
 by third parties without the prior written permission of the author.
 
+Copyright © 2022 Gaspard d'Hautefeuille: use Flask app factory create_app
 Copyright © 2019-2022 Ralph Seichter
 
 This file is part of automua.
@@ -37,8 +38,18 @@ MOZILLA_CONFIG_ROUTE = '/mail/config-v1.1.xml'
 MSOFT_ALTERNATE_ROUTE = '/AutoDiscover/AutoDiscover.xml'
 MSOFT_CONFIG_ROUTE = '/autodiscover/autodiscover.xml'
 
-
-def _proxy_fix():
+def create_app():
+    app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = config.db_uri()
+    app.config['SQLALCHEMY_ECHO'] = config.db_echo()
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.add_url_rule('/', view_func=SiteRoot.as_view('root'), methods=['GET'])
+    app.add_url_rule(APPLE_CONFIG_ROUTE, view_func=mobileconfig.AppleView.as_view('apple'), methods=['GET'])
+    app.add_url_rule(INITDB_ROUTE, view_func=InitDatabase.as_view('initdb'), methods=['DELETE', 'GET', 'POST'])
+    app.add_url_rule(MOZILLA_CONFIG_ROUTE, view_func=autoconfig.MozillaView.as_view('mozilla'), methods=['GET'])
+    app.add_url_rule(MSOFT_ALTERNATE_ROUTE, view_func=autodiscover.OutlookView.as_view('ms2'), methods=['POST'])
+    app.add_url_rule(MSOFT_CONFIG_ROUTE, view_func=autodiscover.OutlookView.as_view('ms1'), methods=['POST'])
+    
     """Use a fix for Werkzeug if automua is running behind a proxy.
     This enables support for X-Forwarded-* headers.
     """
@@ -47,18 +58,7 @@ def _proxy_fix():
         # See https://werkzeug.palletsprojects.com/en/0.15.x/middleware/proxy_fix/
         app.wsgi_app = ProxyFix(app.wsgi_app, x_for=p, x_host=p, x_port=p, x_prefix=p, x_proto=p)
 
+    db.init_app(app)
+    migrate = Migrate(app, db)
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = config.db_uri()
-app.config['SQLALCHEMY_ECHO'] = config.db_echo()
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.add_url_rule('/', view_func=SiteRoot.as_view('root'), methods=['GET'])
-app.add_url_rule(APPLE_CONFIG_ROUTE, view_func=mobileconfig.AppleView.as_view('apple'), methods=['GET'])
-app.add_url_rule(INITDB_ROUTE, view_func=InitDatabase.as_view('initdb'), methods=['DELETE', 'GET', 'POST'])
-app.add_url_rule(MOZILLA_CONFIG_ROUTE, view_func=autoconfig.MozillaView.as_view('mozilla'), methods=['GET'])
-app.add_url_rule(MSOFT_ALTERNATE_ROUTE, view_func=autodiscover.OutlookView.as_view('ms2'), methods=['POST'])
-app.add_url_rule(MSOFT_CONFIG_ROUTE, view_func=autodiscover.OutlookView.as_view('ms1'), methods=['POST'])
-_proxy_fix()
-
-db.init_app(app)
-migrate = Migrate(app, db)
+    return app
