@@ -37,7 +37,7 @@ from automua.model import db
 from automua.server import APPLE_CONFIG_ROUTE
 from automua.server import MOZILLA_CONFIG_ROUTE
 from automua.server import MSOFT_CONFIG_ROUTE
-from automua.server import create_app as app
+from automua.server import create_app
 from automua.util import from_environ
 from automua.views import CONTENT_TYPE_XML
 from automua.views import EMAIL_MOZILLA
@@ -55,6 +55,7 @@ class TestCase(unittest.TestCase):
     create_db = True
 
     def setUp(self) -> None:
+        app = create_app()
         app.config['TESTING'] = True
         app.config['DEBUG'] = False
         self.app = app.test_client()
@@ -72,6 +73,7 @@ class TestCase(unittest.TestCase):
                 db.session.commit()
 
     def tearDown(self) -> None:
+        app = create_app()
         with app.app_context():
             db.drop_all()
             db.session.commit()

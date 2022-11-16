@@ -40,8 +40,9 @@ from automua.model import Ldapserver
 from automua.util import unique
 from tests.base import RUN_LDAP_TESTS
 from tests.base import TestCase
-from tests.base import app
+from automua.server import create_app
 
+app = create_app()
 
 @unittest.skipUnless(RUN_LDAP_TESTS, 'Skipping LDAP tests')
 class LdapTests(TestCase):
