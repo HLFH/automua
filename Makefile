@@ -8,9 +8,9 @@ usage:
 	@exit 1
 
 devtest:
-	python -m pytest
-#	AUTOMUA_CONF=tests/unittest.conf RUN_LDAP_TESTS=$(RUN_LDAP_TESTS) PYTHONPATH=. coverage run --source automua -m unittest discover -v tests/
-#	coverage html --rcfile=tests/coverage.rc
+	test_suite="tests"
+	AUTOMUA_CONF=tests/unittest.conf RUN_LDAP_TESTS=$(RUN_LDAP_TESTS) PYTHONPATH=. coverage run --source automua -m pytest
+	coverage html --rcfile=tests/coverage.rc
 
 docs:
 	$(PKG) docs
