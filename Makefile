@@ -4,7 +4,7 @@ RUN_LDAP_TESTS	?= 0
 .PHONY:	docs push usage
 
 usage:
-	@echo >&2 "Usage: make {devtest | docs | push}"
+	@echo >&2 "Usage: make {devtest | docs | push | publish}"
 	@exit 1
 
 devtest:
@@ -17,3 +17,9 @@ docs:
 
 push:
 	@for r in $(shell git remote); do git push $$r; done
+
+publish:
+	hatch clean
+	hatch build
+	hatch publish
+
