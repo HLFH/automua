@@ -36,10 +36,27 @@ classifiers = [
     "Development Status :: 5 - Production/Stable"
 ]
 dependencies =[
-    'Flask >= 1.1.1',
-    'Flask-Migrate >= 2.5.2',
-    'Flask-SQLAlchemy >= 2.4.1',
-    'ldap3 >= 2.6',
+    'Flask==2.2.2',
+    'Flask-Migrate==3.1.0',
+    'Flask-SQLAlchemy==3.0.2',
+    'ldap3==2.9.1',
+    'Werkzeug==2.2.2',
+    'SQLAlchemy==2.0.0b3',
+    'alembic==1.8.1',
+    'lxml==4.9.1',
+    'mysqlclient==2.1.1'
+]
+
+[project.optional-dependencies]
+test = [
+    'pytest==7.2.0',
+    'pytest-flask==1.2.0'
+]
+deploy = [
+    'hatch==1.6.3',
+    'pip-tools==6.10.0',
+    'coverage==6.5.0',
+    'flake8==5.0.4'
 ]
 
 [project.urls]
