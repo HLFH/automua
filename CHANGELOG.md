@@ -26,7 +26,7 @@
 
 2022.2, 2022.3, 2022.4: Unpublished releases
 
-2022.5 (2022-10-31): Fork automx2 to automua. First automua public release. Avoid GPLv3 violation. Open project to contributors. Fix the database initialisation w/ HTTP POST & JSON payload (`automua/database.py`). Replace the deprecated setup.py by pyproject.toml. Use hatch to build and publish releases on Python PyPI. Packages for Arch Linux AUR and Python PyPI. Update docs and fix a few contrib files.  
+2022.5 (2022-10-31): Fork automx2 to automua. First automua public release. Avoid GPLv3 violation. Open project to contributors. Fix the database initialisation w/ HTTP POST & JSON payload (`automua/database.py`). Replace the deprecated setup.py by pyproject.toml. Use hatch to build and publish releases on Python PyPI. Packages for Arch Linux AUR and Python PyPI. Update docs and fix a few contrib files. Add trademark notice. 
 
 2022.6 (2022-11-02): start fixing Autodiscover requests: replace ElementTree XML API by lxml, expand support for Outlook namespaces uris, add test_invalid_namespace
 
@@ -37,3 +37,5 @@
 2022.6.6, 2022.6.7, 2022.6.8 (2022-11-8): replace SSL by TLS as much as possible. Note that Thunderbird does not support the Encryption element of the Autodiscover protocol.
 
 2022.7 (2022-11-10): replace legacy backref by back_populates: final fix for the database init w/ HTTP POST & JSON payload
+
+2022.8 (2022-11-17): rewrite for sqlalchemy 2.0 (Query API), upgrade deps, switch from unittest to pytest, use Flask app factory create_app (fix undocumented AssertionError), restore JSON upload w/ MySQL workaround
