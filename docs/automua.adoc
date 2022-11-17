@@ -3,7 +3,7 @@
 = automua: Email client configuration made easy
 :keywords: autoconfig, autodiscover, mobileconfig, automx, automx2, automua
 :subject: automua: Email client configuration made easy
-:revnumber: 2022.8
+:revnumber: 2022.8.1
 :revdate: 2022-11-17
 :copyright: © 2019-2022 Ralph Seichter, Patrick Ben Koetter, Gaspard d'Hautefeuille
 :publisher: Gaspard d'Hautefeuille
