@@ -41,3 +41,7 @@
 2022.8 (2022-11-17): rewrite for sqlalchemy 2.0 (Query API), upgrade deps, switch from unittest to pytest, use Flask app factory create_app (fix undocumented AssertionError), restore JSON upload w/ MySQL workaround
 
 2022.8.1 (2022-11-17): deprecate requirements*.txt in favour of pyproject.toml and pip-tools
+
+2022.8.2 (2023-01-03): remove mysqlclient dep, set pip-compile resolver to backtracking
+
+2023.0 (2023-01-03): update deps
