@@ -4,7 +4,7 @@
 #
 #    pip-compile --extra=test --output-file=requirements-test.txt --resolver=backtracking pyproject.toml
 #
-alembic==1.8.1
+alembic==1.9.1
     # via
     #   automua (pyproject.toml)
     #   flask-migrate
@@ -20,7 +20,7 @@ flask==2.2.2
     #   flask-migrate
     #   flask-sqlalchemy
     #   pytest-flask
-flask-migrate==3.1.0
+flask-migrate==4.0.0
     # via automua (pyproject.toml)
 flask-sqlalchemy==3.0.2
     # via
@@ -36,7 +36,7 @@ jinja2==3.1.2
     # via flask
 ldap3==2.9.1
     # via automua (pyproject.toml)
-lxml==4.9.1
+lxml==4.9.2
     # via automua (pyproject.toml)
 mako==1.2.4
     # via alembic
@@ -59,7 +59,7 @@ pytest==7.2.0
     #   pytest-flask
 pytest-flask==1.2.0
     # via automua (pyproject.toml)
-sqlalchemy==2.0.0b3
+sqlalchemy==2.0.0rc1
     # via
     #   alembic
     #   automua (pyproject.toml)

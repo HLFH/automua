@@ -37,13 +37,13 @@ classifiers = [
 ]
 dependencies =[
     'Flask==2.2.2',
-    'Flask-Migrate==3.1.0',
+    'Flask-Migrate==4.0.0',
     'Flask-SQLAlchemy==3.0.2',
     'ldap3==2.9.1',
     'Werkzeug==2.2.2',
-    'SQLAlchemy==2.0.0b3',
-    'alembic==1.8.1',
-    'lxml==4.9.1'
+    'SQLAlchemy==2.0.0rc1',
+    'alembic==1.9.1',
+    'lxml==4.9.2'
 ]
 
 [project.optional-dependencies]
@@ -53,9 +53,9 @@ test = [
 ]
 deploy = [
     'hatch==1.6.3',
-    'pip-tools==6.10.0',
-    'coverage==6.5.0',
-    'flake8==5.0.4'
+    'pip-tools==6.12.1',
+    'coverage==7.0.2',
+    'flake8==6.0.0'
 ]
 
 [project.urls]
