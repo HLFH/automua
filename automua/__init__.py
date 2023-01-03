@@ -22,7 +22,7 @@ along with automua. If not, see <https://www.gnu.org/licenses/>.
 import logging
 
 IDENTIFIER = "automua" # Do not change this!
-VERSION = '2022.8.1'
+VERSION = '2023.0'
 
 PLACEHOLDER_ADDRESS = r'%EMAILADDRESS%'
 PLACEHOLDER_DOMAIN = r'%EMAILDOMAIN%'
