@@ -10,3 +10,4 @@ automua/__pycache__/
 automua/generators/__pycache__/
 automua/views/__pycache__/
 tests/__pycache__/
+.DS_Store
