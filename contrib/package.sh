@@ -25,7 +25,7 @@ function do_docs() {
 	)
 	pushd docs >/dev/null
 	"${ad}-pdf" -a toc=preamble "${opt[@]}"
-	${ad} -a toc=right -o gh-pages/automua/index.html "${opt[@]}"
+	${ad} -a toc=right -o gh-pages/index.html "${opt[@]}"
 	popd >/dev/null
 }
 
